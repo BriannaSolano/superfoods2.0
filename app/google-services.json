@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "678445813438",
+    "project_id": "super-foods-26f39",
+    "storage_bucket": "super-foods-26f39.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:678445813438:android:1e7e41fb42089f6e9f58ef",
+        "android_client_info": {
+          "package_name": "com.example.myapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "678445813438-cbsscdftvluqf91fhe2uuh06ljujsges.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAK2UE8PYA3iTINNRWo_9uddL17BkD2nD8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "678445813438-cbsscdftvluqf91fhe2uuh06ljujsges.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

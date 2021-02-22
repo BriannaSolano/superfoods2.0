@@ -1,0 +1,42 @@
+<resources>
+    <string name="app_name">My Application</string>
+
+    <string name="back4app_server_url">https://parseapi.back4app.com/</string>
+
+    <!-- Change the following strings as required -->
+    <string name="back4app_app_id">5r8ZBwqX5RM3Sf4UUrYxlJk25zM4Oj4qs8Sy13eM</string>
+    <string name="back4app_client_key">DHCKTkNlwXsY3BLqUmkuMu1Qz0EkS2Obc20EHAdQ</string>
+    <string name="order">Order</string>
+    <string name="pizza">Pizza</string>
+    <string name="tacos">Tacos</string>
+    <string name="donuts">Donuts</string>
+    <string name="pie">Pie</string>
+    <string name="onion_rings">Onion Rings</string>
+    <string name="french_toast">French Toast</string>
+    <string name="steak">Steak</string>
+    <string name="bagels">Bagels</string>
+    <string name="_59_99">$59.99</string>
+    <string name="burger">Burger</string>
+    <string name="toast">Toast</string>
+    <string name="water">Water</string>
+    <string name="wine">Wine</string>
+    <string name="pancakes">Pancakes</string>
+    <string name="fries">Fries</string>
+    <string name="milkshake">Milkshake</string>
+    <string name="pasta">Pasta</string>
+    <string name="button">Button</string>
+    <string name="games">Games</string>
+    <string name="log_out">Log out</string>
+    <string name="skip_tutorial">Skip Tutorial</string>
+    <string name="ready">Ready?</string>
+    <string name="title_activity_gamestart">Gamestart</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+
+</resources>
