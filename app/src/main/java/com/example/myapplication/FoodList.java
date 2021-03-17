@@ -66,8 +66,7 @@ public class FoodList extends AppCompatActivity {
     private void loadListFood(String categoryId) {
 
             Query query = foodList.orderByChild("menuId").equalTo(categoryId);
-            FirebaseRecyclerOptions<Food> options =
-                new FirebaseRecyclerOptions.Builder<Food>()
+            FirebaseRecyclerOptions<Food> options = new FirebaseRecyclerOptions.Builder<Food>()
                         .setQuery(query, Food.class)
                         .build();
 
