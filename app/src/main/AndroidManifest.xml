@@ -12,10 +12,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
+        <activity android:name=".FoodList"></activity>
+        <activity
+            android:name=".Home"
+            android:label="@string/title_activity_home"
+            android:theme="@style/Theme.MyApplication.NoActionBar" />
         <activity
             android:name=".Gamestart"
             android:label="@string/title_activity_gamestart"
-            android:theme="@style/Theme.MyApplication.NoActionBar"></activity>
+            android:theme="@style/Theme.MyApplication.NoActionBar" />
         <activity android:name=".gameready" />
         <activity android:name=".GameTutorial" />
         <activity android:name=".game" />

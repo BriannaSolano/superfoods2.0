@@ -40,7 +40,7 @@ public class usermain extends AppCompatActivity {
         order.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(usermain.this, orderfood.class));
+                startActivity(new Intent(usermain.this, Home.class));
             }
         });
 
