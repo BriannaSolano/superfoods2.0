@@ -2,17 +2,18 @@ package com.example.myapplication;
 
 public class Food {
     private String Description, Discount, Image, MenuId, Name, Price;
-
+    private int Calories;
     public Food() {
     }
 
-    public Food(String description, String discount, String image, String menuId, String name, String price) {
+    public Food(String description, String discount, String image, String menuId, String name, String price, int calories) {
         Description = description;
         Discount = discount;
         Image = image;
         MenuId = menuId;
         Name = name;
         Price = price;
+        Calories = calories;
     }
 
     public String getDescription() {
@@ -61,5 +62,13 @@ public class Food {
 
     public void setPrice(String price) {
         Price = price;
+    }
+
+    public int getCalories() {
+        return Calories;
+    }
+
+    public void setCalories(int calories) {
+        Calories = calories;
     }
 }
