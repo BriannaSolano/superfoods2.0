@@ -6,7 +6,6 @@
     <!-- Change the following strings as required -->
     <string name="back4app_app_id">5r8ZBwqX5RM3Sf4UUrYxlJk25zM4Oj4qs8Sy13eM</string>
     <string name="back4app_client_key">DHCKTkNlwXsY3BLqUmkuMu1Qz0EkS2Obc20EHAdQ</string>
-    <string name="order">Order</string>
     <string name="pizza">Pizza</string>
     <string name="tacos">Tacos</string>
     <string name="donuts">Donuts</string>
@@ -50,5 +49,14 @@
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
     <string name="name_of_menu">Name of Menu</string>
+    <string name="title_activity_home_screen">MainActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="order">Order</string>
+    <string name="restaurants">Restaurants</string>
+    <string name="more">More</string>
+    <string name="start_order">Start Order</string>
+    <string name="create_accont">Create Accont</string>
 
 </resources>

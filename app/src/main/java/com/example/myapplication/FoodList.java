@@ -3,7 +3,6 @@ package com.example.myapplication;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.LinearSmoothScroller;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
@@ -11,10 +10,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.example.myapplication.Interface.ItemClickListener;
-import com.example.myapplication.ViewHolder.FoodViewHolder;
+import com.example.myapplication.ViewHolder.FoodHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DatabaseReference;
@@ -32,7 +30,7 @@ public class FoodList extends AppCompatActivity {
 
     String categoryId = "";
 
-    FirebaseRecyclerAdapter<Food, FoodViewHolder> adapter;
+    FirebaseRecyclerAdapter<Food, FoodHolder> adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,8 +40,7 @@ public class FoodList extends AppCompatActivity {
 
         //iniate FireBase
         database = FirebaseDatabase.getInstance();
-        foodList = database.getReference("Foods");
-
+        foodList = database.getReference("Food");
         recyclerView = (RecyclerView)findViewById(R.id.recycler_food);
         recyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(this);
@@ -65,39 +62,37 @@ public class FoodList extends AppCompatActivity {
 
     private void loadListFood(String categoryId) {
 
-            Query query = foodList.orderByChild("menuId").equalTo(categoryId);
-            FirebaseRecyclerOptions<Food> options = new FirebaseRecyclerOptions.Builder<Food>()
-                        .setQuery(query, Food.class)
-                        .build();
+        Query query = foodList.orderByChild("MenuId").equalTo(categoryId);
 
-            adapter = new FirebaseRecyclerAdapter<Food, FoodViewHolder>(options) {
-            @Override
-            protected void onBindViewHolder(@NonNull FoodViewHolder holder, int position, @NonNull Food model) {
-                holder.food_name.setText(model.getName());
-                Picasso.with(getBaseContext()).load(model.getImage())
-                        .into(holder.food_image);
+        FirebaseRecyclerOptions<Food> options = new FirebaseRecyclerOptions.Builder<Food>()
+                .setQuery(query, Food.class)
+                .build();
+        adapter = new FirebaseRecyclerAdapter<Food, FoodHolder>(options) {
+                @Override
+                public FoodHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                    View itemView = LayoutInflater.from(parent.getContext())
+                            .inflate(R.layout.food_item, parent, false);
+                    return new FoodHolder(itemView);
+                }
+                @Override
+                protected void onBindViewHolder(@NonNull FoodHolder holder, int position, @NonNull Food model) {
+                    holder.food_name.setText(model.getName());
+                    Picasso.with(getBaseContext()).load(model.getImage())
+                            .into(holder.food_image);
+                    final Food local = model;
+                    holder.setItemClickListener(new ItemClickListener() {
+                        @Override
+                        public void onClick(View view, int position, boolean isLongClick) {
+                            // What happens when they pick a food
+                        }
+                    });
 
-                final Food local = model;
-                holder.setItemClickListener(new ItemClickListener() {
-                    @Override
-                    public void onClick(View view, int position, boolean isLongClick) {
-                        Toast.makeText(FoodList.this,""+local.getName(),Toast.LENGTH_SHORT).show();
-                    }
-                });
-
-            }
-
-
-            @Override
-            public FoodViewHolder onCreateViewHolder( ViewGroup parent, int viewType) {
-                View itemView = LayoutInflater.from(parent.getContext())
-                        .inflate(R.layout.food_item,parent,false);
-                return new FoodViewHolder(itemView);
-            }
-        };
-            Log.d("TAG",""+adapter.getItemCount());
+                }
+            };
+            Log.d("TAG", ""+adapter.getItemCount());
             recyclerView.setAdapter(adapter);
     }
+
 
     @Override
     protected void onStart() {

@@ -1,16 +1,14 @@
 package com.example.myapplication;
 
-import android.content.ClipData;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Menu;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.example.myapplication.Interface.ItemClickListener;
-import com.example.myapplication.ViewHolder.MenuViewHolder;
+import com.example.myapplication.ViewHolder.CategoryHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -21,7 +19,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.squareup.picasso.Picasso;
 
-import androidx.annotation.NonNull;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -32,18 +29,18 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class Home extends AppCompatActivity {
+public class CategoryList extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
     // Setting RecyclerView
     RecyclerView recycler_menu;
     LinearLayoutManager linearlayoutManager;
-    FirebaseRecyclerAdapter adapter;
 
 
     //FireBase
     FirebaseDatabase database;
     DatabaseReference catagory;
+    FirebaseRecyclerAdapter<Category, CategoryHolder> adapter;
 
 
     @Override
@@ -100,16 +97,16 @@ public class Home extends AppCompatActivity {
                         .setQuery(query, Category.class)
                         .build();
 
-        adapter = new FirebaseRecyclerAdapter<Category, MenuViewHolder>(options) {
+        adapter = new FirebaseRecyclerAdapter<Category, CategoryHolder>(options) {
             @Override
-            public MenuViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+            public CategoryHolder onCreateViewHolder(ViewGroup parent, int viewType) {
                 View view = LayoutInflater.from(parent.getContext())
                         .inflate(R.layout.menu_item,parent,false);
-                return new MenuViewHolder(view);
+                return new CategoryHolder(view);
             }
 
             @Override
-            protected void onBindViewHolder(MenuViewHolder holder, int position,  Category model) {
+            protected void onBindViewHolder(CategoryHolder holder, int position, Category model) {
                 holder.txtMenuName.setText(model.getName());
                 Picasso.with(getBaseContext()).load(model.getImage())
                         .into(holder.imageView);
@@ -118,7 +115,7 @@ public class Home extends AppCompatActivity {
                     @Override
                     public void onClick(View view, int position, boolean isLongClick) {
                         //From Category to FoodList
-                        Intent foodList = new Intent(Home.this,FoodList.class);
+                        Intent foodList = new Intent(CategoryList.this,FoodList.class);
                         foodList.putExtra("CategoryId",adapter.getRef(position).getKey());
                         startActivity(foodList);
                     }

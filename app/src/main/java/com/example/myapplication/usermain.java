@@ -8,7 +8,6 @@ import android.view.View;
 import android.widget.Button;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 public class usermain extends AppCompatActivity {
     private Button order;
@@ -40,7 +39,7 @@ public class usermain extends AppCompatActivity {
         order.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(usermain.this, Home.class));
+                startActivity(new Intent(usermain.this, CategoryList.class));
             }
         });
 

@@ -18,7 +18,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-public class Activity2 extends AppCompatActivity {
+public class CustomerLogin extends AppCompatActivity {
 
     private EditText Email;
     private EditText Password;
@@ -49,13 +49,13 @@ public class Activity2 extends AppCompatActivity {
         btn4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(Activity2.this, customermen.class));
+                startActivity(new Intent(CustomerLogin.this, CustomerRegister.class));
             }
         });
 
         if(user != null){
             finish();
-            startActivity(new Intent(Activity2.this, orderfood.class));
+            startActivity(new Intent(CustomerLogin.this, orderfood.class));
         }
 
         Login.setOnClickListener((new View.OnClickListener() {
@@ -78,13 +78,13 @@ public class Activity2 extends AppCompatActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
                     progressDialog.dismiss();
-                    Toast.makeText(Activity2.this,"Login Successful", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(Activity2.this, usermain.class));
+                    Toast.makeText(CustomerLogin.this,"Login Successful", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(CustomerLogin.this, usermain.class));
 
                 }
                 else
                 {
-                    Toast.makeText(Activity2.this,"Login Failed", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(CustomerLogin.this,"Login Failed", Toast.LENGTH_SHORT).show();
                     counter--;
                     Info.setText("No of attempts remaining: " + counter);
                     progressDialog.dismiss();

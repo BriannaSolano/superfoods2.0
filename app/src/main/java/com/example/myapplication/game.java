@@ -25,6 +25,15 @@ public class game extends AppCompatActivity {
             }
         });
 
+        Button leave = (Button)findViewById(R.id.button18);
+
+        leave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(game.this, usermain.class));
+            }
+        });
+
     }
 
 

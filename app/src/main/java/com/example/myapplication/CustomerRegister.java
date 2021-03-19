@@ -15,7 +15,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class customermen extends AppCompatActivity {
+public class CustomerRegister extends AppCompatActivity {
 
     private EditText userBirthday, userPassword, userEmail;
     private Button regButton;
@@ -41,12 +41,12 @@ public class customermen extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if(task.isSuccessful()) {
-                                Toast.makeText(customermen.this, "Registration Successful", Toast.LENGTH_SHORT).show();
-                                startActivity(new Intent(customermen.this,Activity2.class));
+                                Toast.makeText(CustomerRegister.this, "Registration Successful", Toast.LENGTH_SHORT).show();
+                                startActivity(new Intent(CustomerRegister.this, CustomerLogin.class));
                             }
                             else
                             {
-                                Toast.makeText(customermen.this, "Registration Failed", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(CustomerRegister.this, "Registration Failed", Toast.LENGTH_SHORT).show();
                             }
                         }
                     });
