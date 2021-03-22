@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -77,13 +78,16 @@ public class FoodList extends AppCompatActivity {
                 @Override
                 protected void onBindViewHolder(@NonNull FoodHolder holder, int position, @NonNull Food model) {
                     holder.food_name.setText(model.getName());
+                    holder.food_calorie.setText(model.getCalories());
                     Picasso.with(getBaseContext()).load(model.getImage())
                             .into(holder.food_image);
                     final Food local = model;
                     holder.setItemClickListener(new ItemClickListener() {
                         @Override
                         public void onClick(View view, int position, boolean isLongClick) {
-                            // What happens when they pick a food
+                           Intent foodCode = new Intent(FoodList.this,SelectedFood.class);
+                           foodCode.putExtra("FoodId",adapter.getRef(position).getKey());
+                           startActivity(foodCode);
                         }
                     });
 

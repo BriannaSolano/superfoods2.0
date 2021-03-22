@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.myapplication.ViewHolder.CustomerHomeScreen;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -31,12 +32,12 @@ public class CustomerLogin extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_2);
+        setContentView(R.layout.activity_customersign_in);
 
         Email = (EditText) findViewById(R.id.editTextTextEmailAddress);
         Password = (EditText) findViewById(R.id.editTextTextPassword);
         Info = (TextView) findViewById(R.id.info);
-        Login = (Button) findViewById(R.id.button);
+        Login = (Button) findViewById(R.id.employeebutton);
 
 
         firebaseAuth = FirebaseAuth.getInstance();
@@ -55,7 +56,7 @@ public class CustomerLogin extends AppCompatActivity {
 
         if(user != null){
             finish();
-            startActivity(new Intent(CustomerLogin.this, orderfood.class));
+            startActivity(new Intent(CustomerLogin.this, CustomerHomeScreen.class));
         }
 
         Login.setOnClickListener((new View.OnClickListener() {
@@ -79,7 +80,7 @@ public class CustomerLogin extends AppCompatActivity {
                 if(task.isSuccessful()){
                     progressDialog.dismiss();
                     Toast.makeText(CustomerLogin.this,"Login Successful", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(CustomerLogin.this, usermain.class));
+                    startActivity(new Intent(CustomerLogin.this, CustomerHomeScreen.class));
 
                 }
                 else

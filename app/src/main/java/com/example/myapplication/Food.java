@@ -1,18 +1,27 @@
 package com.example.myapplication;
 
 public class Food {
-    private String Description, Discount, Image, MenuId, Name, Price;
+    private String Description, Discount, Image, MenuId, Name, Price, Calories;
 
     public Food() {
     }
 
-    public Food(String description, String discount, String image, String menuId, String name, String price) {
+    public Food(String description, String discount, String image, String menuId, String name, String price, String calories) {
         Description = description;
         Discount = discount;
         Image = image;
         MenuId = menuId;
         Name = name;
         Price = price;
+        Calories = calories;
+    }
+
+    public String getCalories() {
+        return Calories;
+    }
+
+    public void setCalories(String calories) {
+        Calories = calories;
     }
 
     public String getDescription() {

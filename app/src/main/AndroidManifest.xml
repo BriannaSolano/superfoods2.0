@@ -6,6 +6,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -14,13 +15,23 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
+        <activity android:name=".CustomerCart"></activity>
+        <activity android:name=".SelectedFood" />
+        <activity android:name=".ChefHomePage" />
+        <activity android:name=".WaiterHomePage" />
+        <activity android:name=".DroneHomePage" />
+        <activity android:name=".ManagerHomePage" />
+        <activity android:name=".employee_sign_in" />
+        <activity
+            android:name=".ViewHolder.CustomerHomeScreen"
+            android:label="@string/title_activity_customer_accont_home" />
 
         <meta-data
             android:name="com.google.geo.API_KEY"
-            android:value="@string/map_key" />
+            android:value="@string/google_api_key" />
 
         <activity
-            android:name=".ViewHolder.HomeScreen"
+            android:name=".ViewHolder.GuestHomeScreen"
             android:label="@string/title_activity_home_screen" />
         <activity android:name=".FoodList" />
         <activity
@@ -33,10 +44,9 @@
             android:theme="@style/Theme.MyApplication.NoActionBar" />
         <activity android:name=".gameready" />
         <activity android:name=".GameTutorial" />
-        <activity android:name=".game" />
+        <activity android:name=".gameopening" />
         <activity android:name=".usermain" />
         <activity android:name=".CustomerRegister" />
-        <activity android:name=".orderfood" />
         <activity android:name=".CustomerLogin" />
         <activity android:name=".MainActivity">
             <intent-filter>

@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/Calories"
     android:layout_width="match_parent"
     android:layout_height="200dp"
-    app:cardElevation="4dp"
     android:layout_marginBottom="8dp"
-    >
+    app:cardElevation="4dp">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -14,20 +13,58 @@
 
         <ImageView
             android:id="@+id/food_image"
-            android:scaleType="centerCrop"
-            android:src="@drawable/menu__background"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/menu__background" />
+
+        <TextView
+            android:id="@+id/food_calorie2"
+            android:layout_width="145dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="93dp"
+            android:layout_marginLeft="93dp"
+            android:layout_marginEnd="-2dp"
+            android:layout_marginRight="-2dp"
+            android:layout_marginBottom="31dp"
+            android:layout_toStartOf="@+id/food_calorie"
+            android:layout_toLeftOf="@+id/food_calorie"
+            android:background="#4f0e0d0e"
+            android:gravity="center"
+            android:text="Calories:"
+            android:textColor="@android:color/white"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/food_calorie"
+            android:layout_width="185dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="51dp"
+            android:layout_marginRight="51dp"
+            android:layout_marginBottom="32dp"
+            android:background="#4f0e0d0e"
+            android:gravity="center"
+            android:text="Calories of food"
+            android:textColor="@android:color/white"
+            android:textSize="20sp" />
+
         <TextView
             android:id="@+id/food_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="4dp"
+            android:background="#4f0e0d0e"
+            android:gravity="center"
             android:text="Name of food"
             android:textColor="@android:color/white"
-            android:background="#4f0e0d0e"
-            android:textSize="20sp"
-            android:gravity="center"
-            android:layout_alignParentBottom="true"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:textSize="20sp" />
 
     </RelativeLayout>
 

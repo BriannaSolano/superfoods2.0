@@ -58,5 +58,36 @@
     <string name="more">More</string>
     <string name="start_order">Start Order</string>
     <string name="create_accont">Create Accont</string>
+    <string name="title_activity_customer_accont_home">MainActivity</string>
+
+
+    //Selected Food Quantity Scroll Bar
+
+    <string-array name="Number_of_Products">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+    </string-array>
+
+
+    //Selected ingredients not to include
+
+    <string-array name="Ingredients">
+        <item>Tomatos</item>
+        <item>Cheese</item>
+        <item>Pickles</item>
+        <item>Lettuce</item>
+        <item>Bread</item>
+        <item>Onions</item>
+        <item>Bread Bun</item>
+    </string-array>
+
 
 </resources>

@@ -7,7 +7,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class game extends AppCompatActivity {
+import com.example.myapplication.ViewHolder.CustomerHomeScreen;
+import com.example.myapplication.ViewHolder.GuestHomeScreen;
+
+public class gameopening extends AppCompatActivity {
 
 
     @Override
@@ -21,7 +24,7 @@ public class game extends AppCompatActivity {
         start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(game.this, GameTutorial.class));
+                startActivity(new Intent(gameopening.this, GameTutorial.class));
             }
         });
 
@@ -30,7 +33,7 @@ public class game extends AppCompatActivity {
         leave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(game.this, usermain.class));
+                startActivity(new Intent(gameopening.this, CustomerHomeScreen.class));
             }
         });
 

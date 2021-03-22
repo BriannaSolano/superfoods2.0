@@ -39,14 +39,14 @@ public class CategoryList extends AppCompatActivity {
 
     //FireBase
     FirebaseDatabase database;
-    DatabaseReference catagory;
+    DatabaseReference category;
     FirebaseRecyclerAdapter<Category, CategoryHolder> adapter;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
+        setContentView(R.layout.activity_foodmenuhome);
 
 
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -55,15 +55,15 @@ public class CategoryList extends AppCompatActivity {
 
         //Initiating Firebase
         database = FirebaseDatabase.getInstance();
-        catagory = database.getReference("Category");
+        category = database.getReference("Category");
 
         
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+               Intent CartButtonIntent = new Intent (CategoryList.this, CustomerCart.class);
+               startActivity(CartButtonIntent);
             }
         });
         DrawerLayout drawer = findViewById(R.id.drawer_layout);

@@ -5,12 +5,4 @@
     android:id="@+id/relativeLayout2"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/menu__background">
-
-    <fragment
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id = "@+id/google_map"
-        android:name = "com.google.android.gms.maps.SupportMapFragment"/>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+    />

@@ -1,7 +1,6 @@
 package com.example.myapplication;
 
 import android.content.Intent;
-import android.graphics.Rect;
 import android.os.Bundle;
 
 
@@ -45,7 +44,7 @@ public class Gamestart extends AppCompatActivity {
             quit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(Gamestart.this, game.class));
+                startActivity(new Intent(Gamestart.this, gameopening.class));
             }
         });
 

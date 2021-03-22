@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.content.Intent;
 
-import com.example.myapplication.ViewHolder.HomeScreen;
+import com.example.myapplication.ViewHolder.GuestHomeScreen;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -30,7 +30,16 @@ public class MainActivity extends AppCompatActivity {
         btn2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, HomeScreen.class));
+                startActivity(new Intent(MainActivity.this, GuestHomeScreen.class));
+            }
+        });
+
+        Button btn3 = (Button)findViewById(R.id.employeebutton);
+
+        btn3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, employee_sign_in.class));
             }
         });
 

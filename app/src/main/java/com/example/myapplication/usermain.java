@@ -46,7 +46,7 @@ public class usermain extends AppCompatActivity {
         games.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(usermain.this, game.class));
+                startActivity(new Intent(usermain.this, gameopening.class));
             }
         });
 
