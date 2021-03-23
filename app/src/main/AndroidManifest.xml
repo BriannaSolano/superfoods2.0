@@ -22,6 +22,8 @@
         <activity android:name=".DroneHomePage" />
         <activity android:name=".ManagerHomePage" />
         <activity android:name=".employee_sign_in" />
+        <activity android:name=".inventory.dashboardActivity"/>
+        <activity android:name=".inventory.viewInventoryActivity"/>
         <activity
             android:name=".ViewHolder.CustomerHomeScreen"
             android:label="@string/title_activity_customer_accont_home" />
