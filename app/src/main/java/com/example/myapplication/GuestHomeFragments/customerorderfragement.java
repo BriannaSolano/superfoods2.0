@@ -21,6 +21,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class customerorderfragement extends Fragment {
 
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -35,7 +36,5 @@ public class customerorderfragement extends Fragment {
             }
         });
         return view;
-
-
     }
 }
