@@ -3,13 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/Calories"
     android:layout_width="match_parent"
-    android:layout_height="200dp"
-    android:layout_marginBottom="8dp"
-    app:cardElevation="4dp">
+    android:layout_height="300dp"
+    android:layout_marginBottom="10dp"
+    app:cardElevation="10dp">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="313dp">
 
         <ImageView
             android:id="@+id/food_image"
@@ -25,17 +25,17 @@
             android:layout_alignParentStart="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginStart="93dp"
-            android:layout_marginLeft="93dp"
-            android:layout_marginEnd="-2dp"
-            android:layout_marginRight="-2dp"
-            android:layout_marginBottom="31dp"
+            android:layout_marginStart="91dp"
+            android:layout_marginLeft="91dp"
+            android:layout_marginEnd="0dp"
+            android:layout_marginRight="0dp"
+            android:layout_marginBottom="258dp"
             android:layout_toStartOf="@+id/food_calorie"
             android:layout_toLeftOf="@+id/food_calorie"
             android:background="#4f0e0d0e"
             android:gravity="center"
             android:text="Calories:"
-            android:textColor="@android:color/white"
+            android:textColor="@color/white"
             android:textSize="20sp" />
 
         <TextView
@@ -45,13 +45,13 @@
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginEnd="51dp"
-            android:layout_marginRight="51dp"
-            android:layout_marginBottom="32dp"
+            android:layout_marginEnd="56dp"
+            android:layout_marginRight="56dp"
+            android:layout_marginBottom="258dp"
             android:background="#4f0e0d0e"
             android:gravity="center"
             android:text="Calories of food"
-            android:textColor="@android:color/white"
+            android:textColor="@color/white"
             android:textSize="20sp" />
 
         <TextView
@@ -59,12 +59,31 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:layout_marginBottom="4dp"
+            android:layout_marginBottom="285dp"
             android:background="#4f0e0d0e"
             android:gravity="center"
             android:text="Name of food"
-            android:textColor="@android:color/white"
+            android:textColor="@color/white"
             android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/button24"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="2dp"
+            android:layout_marginLeft="2dp"
+            android:layout_marginTop="242dp"
+            android:layout_marginEnd="276dp"
+            android:layout_marginRight="276dp"
+            android:layout_marginBottom="23dp"
+            android:text="Add to Cart"
+            app:backgroundTint="#FF5722" />
 
     </RelativeLayout>
 

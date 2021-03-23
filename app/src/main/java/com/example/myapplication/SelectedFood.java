@@ -5,7 +5,9 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -51,6 +53,15 @@ public class SelectedFood extends AppCompatActivity implements AdapterView.OnIte
     FirebaseDatabase database;
     DatabaseReference foods;
 
+    //Set Firebase Variable for Cart
+    FirebaseDatabase databaseCart;
+    DatabaseReference cart;
+
+    //Shared Preference
+    private SharedPreferences cartPreferences;
+    private static final String SHARED_PREF_NAME = "mypref";
+    private static final String KEY_PHONE = "phone;";
+
 
 
 
@@ -59,6 +70,12 @@ public class SelectedFood extends AppCompatActivity implements AdapterView.OnIte
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_selected_food);
 
+        //shared Preference
+        cartPreferences = getSharedPreferences(SHARED_PREF_NAME,MODE_PRIVATE);
+
+        String phone = cartPreferences.getString(KEY_PHONE,null);
+        SharedPreferences.Editor editor = cartPreferences.edit();
+        editor.commit();
 
         //amount of food item being added to the cart
         amount = findViewById(R.id.spinner);
@@ -77,6 +94,10 @@ public class SelectedFood extends AppCompatActivity implements AdapterView.OnIte
         //Starting Firebase
         database = FirebaseDatabase.getInstance();
         foods = database.getReference("Food");
+
+        //Starting Database for entering cart info
+        database = FirebaseDatabase.getInstance();
+        foods = database.getReference("Cart");
 
         //The Cart Button
         Cart = (FloatingActionButton) findViewById(R.id.btnCart);
@@ -156,11 +177,19 @@ public class SelectedFood extends AppCompatActivity implements AdapterView.OnIte
             }
         });
 
+        final FirebaseDatabase database = FirebaseDatabase.getInstance();
+        final DatabaseReference CartID = database.getReference("Cart");
 
         //Adding Items to the Cart
         Cart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //
+                //
+                //
+                //
+                //
+
                 Toast.makeText(SelectedFood.this,"Added to Cart", Toast.LENGTH_SHORT).show();
             }
         });

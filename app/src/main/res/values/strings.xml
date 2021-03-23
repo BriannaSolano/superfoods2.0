@@ -80,7 +80,7 @@
     //Selected ingredients not to include
 
     <string-array name="Ingredients">
-        <item>Tomatos</item>
+        <item>Tomatoes</item>
         <item>Cheese</item>
         <item>Pickles</item>
         <item>Lettuce</item>
@@ -88,6 +88,9 @@
         <item>Onions</item>
         <item>Bread Bun</item>
     </string-array>
+
+
+
 
 
 </resources>
