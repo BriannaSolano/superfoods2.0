@@ -15,15 +15,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
-        <activity android:name=".CustomerCart"></activity>
+        <activity android:name=".Pay"></activity>
+        <activity android:name=".CustomerCart" />
         <activity android:name=".SelectedFood" />
         <activity android:name=".ChefHomePage" />
         <activity android:name=".WaiterHomePage" />
         <activity android:name=".DroneHomePage" />
         <activity android:name=".ManagerHomePage" />
         <activity android:name=".employee_sign_in" />
-        <activity android:name=".inventory.dashboardActivity"/>
-        <activity android:name=".inventory.viewInventoryActivity"/>
+        <activity android:name=".inventory.dashboardActivity" />
+        <activity android:name=".inventory.viewInventoryActivity" />
         <activity
             android:name=".ViewHolder.CustomerHomeScreen"
             android:label="@string/title_activity_customer_accont_home" />
@@ -31,6 +32,10 @@
         <meta-data
             android:name="com.google.geo.API_KEY"
             android:value="@string/google_api_key" />
+
+        <meta-data
+            android:name="com.google.android.gms.wallet.api.enabled"
+            android:value="true" />
 
         <activity
             android:name=".ViewHolder.GuestHomeScreen"

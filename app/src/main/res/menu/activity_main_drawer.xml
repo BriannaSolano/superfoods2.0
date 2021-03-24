@@ -23,7 +23,7 @@
             android:id="@+id/nav_log_out"
             android:icon="@drawable/ic_baseline_exit_to_app_24"
             android:iconTint="@android:color/white"
-            android:title="Sign Out" />
+            android:title="Back to Home" />
 
     </group>
 </menu>

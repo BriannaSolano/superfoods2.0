@@ -1,16 +1,19 @@
 package com.example.myapplication;
 
+import java.util.List;
+
 public class CartInfo {
-    private String FoodCode, Quantity, EliminateIngredients;
-    public CartInfo(String foodCode){
-        FoodCode = foodCode;
-    }
+    private String FoodCode, Quantity, EliminateIngredients,FoodName,TotalFoodPrice;
 
-
-    public CartInfo(String foodCode, String quantity, String eliminateIngredients) {
+    public CartInfo(String foodCode, String quantity, String eliminateIngredients, String foodName, String totalFoodPrice) {
         FoodCode = foodCode;
         Quantity = quantity;
         EliminateIngredients = eliminateIngredients;
+        FoodName = foodName;
+        TotalFoodPrice = totalFoodPrice;
+    }
+
+    public CartInfo() {
     }
 
     public String getFoodCode() {
@@ -35,5 +38,21 @@ public class CartInfo {
 
     public void setEliminateIngredients(String eliminateIngredients) {
         EliminateIngredients = eliminateIngredients;
+    }
+
+    public String getFoodName() {
+        return FoodName;
+    }
+
+    public void setFoodName(String foodName) {
+        FoodName = foodName;
+    }
+
+    public String getTotalFoodPrice() {
+        return TotalFoodPrice;
+    }
+
+    public void setTotalFoodPrice(String totalFoodPrice) {
+        TotalFoodPrice = totalFoodPrice;
     }
 }

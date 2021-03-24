@@ -37,6 +37,7 @@ public class CategoryList extends AppCompatActivity {
     LinearLayoutManager linearlayoutManager;
 
 
+
     //FireBase
     FirebaseDatabase database;
     DatabaseReference category;

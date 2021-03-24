@@ -38,6 +38,10 @@ public class SelectedFood extends AppCompatActivity implements AdapterView.OnIte
     FloatingActionButton Cart;
     String foodId = "";
     private Spinner amount;
+    String foodName;
+    String foodPrice;
+    float Price;
+    String totalPrice;
 
 
     //Ingredients no to include
@@ -97,7 +101,7 @@ public class SelectedFood extends AppCompatActivity implements AdapterView.OnIte
 
         //Starting Database for entering cart info
         database = FirebaseDatabase.getInstance();
-        foods = database.getReference("Cart");
+        cart = database.getReference("Cart");
 
         //The Cart Button
         Cart = (FloatingActionButton) findViewById(R.id.btnCart);
@@ -184,12 +188,33 @@ public class SelectedFood extends AppCompatActivity implements AdapterView.OnIte
         Cart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //
-                //
-                //
-                //
-                //
+                CartID.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot snapshot) {
+                        if (snapshot.child(phone).exists()) {
+                            CartID.child(phone).child(foodId);
+                            Price = Float.parseFloat(foodPrice)*Float.parseFloat(Text);
+                            totalPrice = Float.toString(Price);
+                            CartID.child(phone).child(foodId).child("TotalFoodPrice").setValue(totalPrice);
+                            CartID.child(phone).child(foodId).child("FoodName").setValue(foodName);
+                            CartID.child(phone).child(foodId).child("Quantity").setValue(Text);
+                            CartID.child(phone).child(foodId).child("EliminateIngredients").setValue(quantitySelected.getText().toString());
+                        } else {
+                            CartID.child(phone);
+                            Price = Float.parseFloat(foodPrice)*Float.parseFloat(Text);
+                            totalPrice = Float.toString(Price);
+                            CartID.child(phone).child(foodId).child("TotalFoodPrice").setValue(totalPrice);
+                            CartID.child(phone).child(foodId);
+                            CartID.child(phone).child(foodId).child("Quantity").setValue(Text);
+                            CartID.child(phone).child(foodId).child("EliminateIngredients").setValue(quantitySelected.getText().toString());
+                        }
+                        Toast.makeText(SelectedFood.this, "Added to Cart", Toast.LENGTH_SHORT).show();
+                    }
 
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+                    }
+                });
                 Toast.makeText(SelectedFood.this,"Added to Cart", Toast.LENGTH_SHORT).show();
             }
         });
@@ -206,6 +231,8 @@ public class SelectedFood extends AppCompatActivity implements AdapterView.OnIte
                 priceofFood.setText(selectedfood.getPrice());
                 nameofFood.setText(selectedfood.getName());
                 detailofFood.setText(selectedfood.getDescription());
+                foodName = selectedfood.getName().toString();
+                foodPrice = selectedfood.getPrice().toString();
 
             }
 
