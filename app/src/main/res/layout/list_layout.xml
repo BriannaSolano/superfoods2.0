@@ -10,79 +10,99 @@
     app:cardUseCompatPadding="true"
     android:background="@color/cardview_shadow_end_color">
 
-<RelativeLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@drawable/backgroundgradient"
-    android:padding="5dp"
-    >
-
-
-    <TextView
-        android:id="@+id/viewitemnamename"
-        android:layout_marginTop="20dp"
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:id="@+id/viewitemsrellayout"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="#ffff"
-        android:textStyle="bold"
-        android:text="Item Name" />
+        android:background="@drawable/backgroundgradientblue"
+        android:orientation="vertical"
+        android:padding="5dp">
 
 
-    <TextView
-        android:id="@+id/viewitemname"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="67dp"
-        android:layout_marginLeft="50dp"
-        android:textColor="#ffff"
-        android:layout_marginTop="20dp"
-        android:layout_toEndOf="@+id/viewitemnamename"
-        android:text="TextView"
-        android:layout_toRightOf="@+id/viewitemnamename" />
+        <TextView
+            android:id="@+id/viewitemnamename"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="0dp"
+            android:text="Item Name"
+            android:textColor="#ffff"
+            android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/viewitempricename"
-        android:layout_marginTop="40dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="#ffff"
-        android:textStyle="bold"
-        android:text="Item Price $" />
+        <TextView
+            android:id="@+id/viewitemname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="0dp"
+            android:layout_toEndOf="@+id/viewitemnamename"
+            android:layout_toRightOf="@+id/viewitemnamename"
+            android:text="TextView"
+            android:textColor="#ffff" />
 
-    <TextView
-        android:id="@+id/viewitemprice"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="62dp"
-        android:layout_marginLeft="50dp"
-        android:layout_marginTop="40dp"
-        android:textColor="#ffff"
-        android:layout_toEndOf="@+id/viewitempricename"
-        android:text="TextView"
-        android:layout_toRightOf="@+id/viewitempricename" />
+        <TextView
+            android:id="@+id/viewitempricename"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:text="Item Price $"
+            android:textColor="#ffff"
+            android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/viewitemcategoryname"
-        android:layout_marginTop="60dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textStyle="bold"
-        android:textColor="#ffff"
-        android:text="Item Category" />
+        <TextView
+            android:id="@+id/viewitemprice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="40dp"
+            android:layout_toEndOf="@+id/viewitempricename"
+            android:layout_toRightOf="@+id/viewitempricename"
+            android:text="TextView"
+            android:textColor="#ffff" />
 
-    <TextView
-        android:id="@+id/viewitemcategory"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="47dp"
-        android:layout_marginLeft="50dp"
-        android:layout_marginTop="60dp"
-        android:textColor="#ffff"
-        android:layout_toEndOf="@+id/viewitemcategoryname"
-        android:text="TextView"
-        android:layout_toRightOf="@+id/viewitemcategoryname" />
+        <TextView
+            android:id="@+id/viewitemcategoryname"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="60dp"
+            android:text="Item Category"
+            android:textColor="#ffff"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/viewitemcategory"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="60dp"
+            android:layout_toEndOf="@+id/viewitemcategoryname"
+            android:layout_toRightOf="@+id/viewitemcategoryname"
+            android:text="TextView"
+            android:textColor="#ffff" />
+
+        <TextView
+            android:id="@+id/viewitemcountname"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="80dp"
+            android:text="Item Count/Min"
+            android:textColor="#ffff"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/viewitemcount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="80dp"
+            android:layout_toEndOf="@+id/viewitemcountname"
+            android:layout_toRightOf="@+id/viewitemcountname"
+            android:text="TextView"
+            android:textColor="#ffff" />
 
 
-</RelativeLayout>
+    </RelativeLayout>
 </androidx.cardview.widget.CardView>

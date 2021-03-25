@@ -53,7 +53,7 @@ public class dashboardActivity extends AppCompatActivity implements View.OnClick
         Intent i;
 
         switch (view.getId()){
-            //case R.id.addItems : i = new Intent(this,additemActivity.class); startActivity(i); break;
+            case R.id.addItems : i = new Intent(this,addItemActivity.class); startActivity(i); break;
             //case R.id.deleteItems : i = new Intent(this,deleteItemsActivity.class);startActivity(i); break;
            // case R.id.scanItems : i = new Intent(this,scanItemsActivity.class);startActivity(i); break;
             case R.id.viewInventory : i = new Intent(this,viewInventoryActivity.class);startActivity(i); break;
@@ -66,7 +66,6 @@ public class dashboardActivity extends AppCompatActivity implements View.OnClick
         finish();
         startActivity(new Intent(dashboardActivity.this, MainActivity.class));
         Toast.makeText(dashboardActivity.this,"LOGOUT SUCCESSFUL", Toast.LENGTH_SHORT).show();
-
     }
 
 }

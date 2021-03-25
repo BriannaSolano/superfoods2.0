@@ -72,11 +72,14 @@ public class viewInventoryActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 float sum = 0;
                 for (DataSnapshot ds : dataSnapshot.getChildren()) {
-                    Map<String, Object> map = (Map<String, Object>) ds.getValue();
-                    Object price = map.get("price");
-                    float pValue = Float.parseFloat(String.valueOf(price));
-                    sum += pValue;
-                    totalnoofsum.setText(String.format("%.2f", sum));
+                    try {
+                        Map<String, Object> map = (Map<String, Object>) ds.getValue();
+                        Object price = map.get("price");
+                        float pValue = Float.parseFloat(String.valueOf(price));
+                        sum += pValue;
+                        totalnoofsum.setText(String.format("%.2f", sum));
+                    } catch (Exception e) {
+                    }
                 }
             }
 
@@ -105,7 +108,11 @@ public class viewInventoryActivity extends AppCompatActivity {
 
             @Override
             protected void onBindViewHolder(@NonNull UsersViewHolder holder, int position, @NonNull Items model) {
-               holder.setDetails(model.getCategory(), model.getName(), model.getPrice());
+               holder.setDetails(model.getCategory(), model.getName(), model.getPrice(), model.getCount() + "/" + model.getMin());
+               if(model.getCount() < 0) holder.itemView.findViewById(R.id.viewitemsrellayout).setBackgroundResource(R.drawable.backgroundgradientbrown);
+               else if(model.getCount() == 0) holder.itemView.findViewById(R.id.viewitemsrellayout).setBackgroundResource(R.drawable.backgroundgradientred);
+               else if(model.getCount() < model.getMin()) holder.itemView.findViewById(R.id.viewitemsrellayout).setBackgroundResource(R.drawable.backgroundgradientgreen);
+               else holder.itemView.findViewById(R.id.viewitemsrellayout).setBackgroundResource(R.drawable.backgroundgradientblue);
             }
         };
         firebaseRecyclerAdapter.startListening();
@@ -120,14 +127,16 @@ public class viewInventoryActivity extends AppCompatActivity {
             mView=itemView;
         }
 
-        public void setDetails(String itemcategory, String itemname, String itemprice){
+        public void setDetails(String itemcategory, String itemname, String itemprice, String itemcountmin){
             TextView item_name = (TextView) mView.findViewById(R.id.viewitemname);
             TextView item_category = (TextView) mView.findViewById(R.id.viewitemcategory);
             TextView item_price = (TextView) mView.findViewById(R.id.viewitemprice);
+            TextView item_countmin = (TextView) mView.findViewById(R.id.viewitemcount);
 
             item_category.setText(itemcategory);
             item_name.setText(itemname);
             item_price.setText(itemprice);
+            item_countmin.setText(itemcountmin);
         }
 
     }
