@@ -36,9 +36,6 @@ public class CartInfo {
         return EliminateIngredients;
     }
 
-    public void setEliminateIngredients(String eliminateIngredients) {
-        EliminateIngredients = eliminateIngredients;
-    }
 
     public String getFoodName() {
         return FoodName;

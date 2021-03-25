@@ -5,11 +5,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.myapplication.ViewHolder.CustomerCartHolder;
+import com.example.myapplication.ViewHolder.CustomerHomeScreen;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -27,6 +32,9 @@ public class CustomerCart extends AppCompatActivity {
     CustomerCartHolder helperAdapter;
     DatabaseReference databaseReference;
     DatabaseReference databaseRef;
+    DatabaseReference databaseCart;
+    DatabaseReference databaseOrder;
+    Button confirmOrder;
     TextView priceText;
     TextView TaxText;
     TextView FinalTotal;
@@ -35,6 +43,7 @@ public class CustomerCart extends AppCompatActivity {
     private SharedPreferences cartPreferences;
     private static final String SHARED_PREF_NAME = "mypref";
     private static final String KEY_PHONE = "phone;";
+    private static final String KEY_FINAL_PRICE = "totalprice";
 
 
 
@@ -42,9 +51,20 @@ public class CustomerCart extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer_cart);
 
+        confirmOrder = findViewById(R.id.placeOrder);
         priceText = findViewById(R.id.totalpricebeforetax);
         TaxText = findViewById(R.id.Tax);
         FinalTotal = findViewById(R.id.totalprice);
+
+
+
+        //Button
+        confirmOrder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(CustomerCart.this, Pay.class));
+            }
+        });
 
         //shared Preference
         cartPreferences = getSharedPreferences(SHARED_PREF_NAME,MODE_PRIVATE);
@@ -102,6 +122,12 @@ public class CustomerCart extends AppCompatActivity {
                 TaxText.setText(angleFormated);
                 FinalTotal.setText(angleForm);
                 priceText.setText(angle);
+
+
+                //Setting price into Shared Prefrence
+                SharedPreferences.Editor editor = cartPreferences.edit();
+                editor.putString(KEY_FINAL_PRICE,angleForm);
+                editor.apply();
             }
 
             @Override
@@ -109,7 +135,6 @@ public class CustomerCart extends AppCompatActivity {
 
             }
         });
-
 
     }
 
