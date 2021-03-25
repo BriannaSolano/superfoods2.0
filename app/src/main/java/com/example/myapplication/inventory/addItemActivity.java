@@ -66,7 +66,7 @@ public class addItemActivity extends AppCompatActivity {
 
         if (!TextUtils.isEmpty(itemnameValue) && !TextUtils.isEmpty(itemcategoryValue) && !TextUtils.isEmpty(itempriceValue) && !TextUtils.isEmpty(itemcountValue) && !TextUtils.isEmpty(itemminValue)) {
             Items items = new Items(itemnameValue, itemcategoryValue, itempriceValue, Integer.parseInt(itemcountValue), Integer.parseInt(itemminValue));
-            databaseReference.push().setValue(items);
+            databaseReference.child(String.valueOf(databaseReference.get().getResult().getChildrenCount()+1)).setValue(items);
             itemname.setText("");
             itemprice.setText("");
             itemprice.setText("");

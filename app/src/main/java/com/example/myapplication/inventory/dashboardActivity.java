@@ -23,27 +23,18 @@ public class dashboardActivity extends AppCompatActivity implements View.OnClick
     TextView firebasenameview;
     Button toast;
 
-    private CardView addItems, deleteItems, scanItems, viewInventory;
+    private CardView addItems;
+    private CardView viewInventory;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
         firebasenameview = findViewById(R.id.firebasename);
 
-        // this is for username to appear after login
-
-        firebaseAuth = FirebaseAuth.getInstance();
-
-        final FirebaseUser users = firebaseAuth.getCurrentUser();
-
         addItems = (CardView)findViewById(R.id.addItems);
-        deleteItems = (CardView) findViewById(R.id.deleteItems);
-        scanItems = (CardView) findViewById(R.id.scanItems);
         viewInventory = (CardView) findViewById(R.id.viewInventory);
 
         addItems.setOnClickListener(this);
-        deleteItems.setOnClickListener(this);
-        scanItems.setOnClickListener(this);
         viewInventory.setOnClickListener(this);
     }
 
@@ -54,8 +45,6 @@ public class dashboardActivity extends AppCompatActivity implements View.OnClick
 
         switch (view.getId()){
             case R.id.addItems : i = new Intent(this,addItemActivity.class); startActivity(i); break;
-            //case R.id.deleteItems : i = new Intent(this,deleteItemsActivity.class);startActivity(i); break;
-           // case R.id.scanItems : i = new Intent(this,scanItemsActivity.class);startActivity(i); break;
             case R.id.viewInventory : i = new Intent(this,viewInventoryActivity.class);startActivity(i); break;
             default: break;
         }

@@ -26,7 +26,7 @@
             android:layout_marginStart="5dp"
             android:layout_marginTop="28dp"
             android:layout_marginBottom="60dp"
-            android:text="Welcome,"
+            android:text="Welcome!"
             android:textStyle="bold"
             android:textColor="#F57C00"
             android:textSize="40sp"
@@ -93,88 +93,12 @@
             </androidx.cardview.widget.CardView>
 
             <!-- Column 2 -->
-            <androidx.cardview.widget.CardView
-                android:id="@+id/deleteItems"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_rowWeight="1"
-                android:layout_columnWeight="1"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                android:layout_marginBottom="16dp"
-                app:cardCornerRadius="8dp"
-                app:cardElevation="8dp">
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal|center_vertical"
-                    android:layout_margin="16dp"
-                    android:orientation="vertical">
-
-                    <ImageView
-
-                        android:layout_width="85dp"
-                        android:layout_height="85dp"
-                        android:padding="10dp"
-                        android:layout_marginLeft="11dp"
-                        android:background="@drawable/circlebackgroundyellow"
-                        app:srcCompat="@drawable/ic_delete_black_24dp"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textStyle="bold"
-                        android:text="Delete Product"
-                        android:textSize="17dp"
-                        />
-
-
-                </LinearLayout>
-
-            </androidx.cardview.widget.CardView>
 
 
             <!-- Row 2 -->
 
             <!-- Column 1 -->
-            <androidx.cardview.widget.CardView
-                android:id="@+id/scanItems"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_rowWeight="1"
-                android:layout_columnWeight="1"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                android:layout_marginBottom="16dp"
-                app:cardCornerRadius="8dp"
-                app:cardElevation="8dp">
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal|center_vertical"
-                    android:layout_margin="16dp"
-                    android:orientation="vertical">
-
-                    <ImageView
-
-                        android:layout_width="85dp"
-                        android:layout_height="85dp"
-                        android:background="@drawable/circlebackgroundpink"
-                        app:srcCompat="@drawable/ic_find_replace_black_24dp"/>
-
-                    <TextView
-                        android:layout_marginTop="10dp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textStyle="bold"
-                        android:text="View Product"
-                        android:textSize="17dp"/>
-
-
-                </LinearLayout>
-
-            </androidx.cardview.widget.CardView>
 
             <!-- Column 2 -->
             <androidx.cardview.widget.CardView
