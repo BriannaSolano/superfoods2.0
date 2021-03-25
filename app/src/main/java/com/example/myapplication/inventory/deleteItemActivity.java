@@ -35,38 +35,6 @@ public class deleteItemActivity extends AppCompatActivity {
         if(itemId != null && itemId.isEmpty()) {
             finish();
         } else {
-            /*ValueEventListener valueEventListener = new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    if(snapshot.exists()) {
-                        String numchildren = String.valueOf(snapshot.getChildrenCount());
-                        Log.d("TAG", "Num Children Found: " + numchildren);
-                        DataSnapshot prev = null;
-                        for(DataSnapshot child : snapshot.getChildren()) {
-                            Log.d("CHILD", "CHILD: " + child.getKey());
-                            if(prev == null) {
-                                if(Integer.parseInt(child.getKey()) == 2) {
-                                    databaseReference.child(String.valueOf(1)).setValue(snapshot.child(numchildren).getValue());
-                                    databaseReference.child(numchildren).removeValue();
-                                }
-                            } else {
-                                if(Integer.parseInt(child.getKey()) != Integer.parseInt(prev.getKey()) + 1) {
-                                    databaseReference.child(child.getKey()).setValue(snapshot.child(numchildren).getValue());
-                                    databaseReference.child(numchildren).removeValue();
-                                }
-                            }
-                            prev = child;
-                        }
-                    }
-
-                }
-
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {
-                    return;
-                }
-            };
-            databaseReference.addListenerForSingleValueEvent(valueEventListener);*/
             databaseReference.runTransaction(new Transaction.Handler() {
                 @NonNull
                 @Override

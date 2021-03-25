@@ -127,13 +127,15 @@ public class viewInventoryActivity extends AppCompatActivity {
                                switch(menuItem.getTitle().toString()) {
                                    case "Edit":
                                        Log.d("TAG","Edit clicked");
-
+                                       Intent intent = new Intent(viewInventoryActivity.this, editItemActivity.class);
+                                       intent.putExtra("ItemId", String.valueOf(position+1));
+                                       startActivity(intent);
                                        break;
                                    case "Delete":
                                        Log.d("TAG","Delete clicked");
-                                       Intent intent = new Intent(viewInventoryActivity.this, deleteItemActivity.class);
-                                       intent.putExtra("ItemId", String.valueOf(position+1));
-                                       startActivity(intent);
+                                       Intent intent2 = new Intent(viewInventoryActivity.this, deleteItemActivity.class);
+                                       intent2.putExtra("ItemId", String.valueOf(position+1));
+                                       startActivity(intent2);
                                        finish();
                                        break;
                                    default:

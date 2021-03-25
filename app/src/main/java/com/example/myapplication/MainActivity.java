@@ -8,14 +8,17 @@ import android.widget.Button;
 import android.content.Intent;
 
 import com.example.myapplication.ViewHolder.GuestHomeScreen;
+import com.google.android.gms.auth.api.signin.GoogleSignInApi;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class MainActivity extends AppCompatActivity {
-
+    FirebaseAuth firebaseAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        firebaseAuth = FirebaseAuth.getInstance();
         Button btn = (Button)findViewById(R.id.button8);
 
         btn.setOnClickListener(new View.OnClickListener() {
@@ -39,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
         btn3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                firebaseAuth.signOut();
                 startActivity(new Intent(MainActivity.this, employee_sign_in.class));
             }
         });
