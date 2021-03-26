@@ -5,20 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ManagerHomePage"
-    android:background="@drawable/menu__background"
-    >
-
-    <TextView
-        android:id="@+id/textView13"
-        android:layout_width="209dp"
-        android:layout_height="262dp"
-        android:text="This is the Manager Home Page"
-        android:textColor="#FFFFFF"
-        android:textSize="36sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    android:background="@drawable/menu__background">
 
     <Button
         android:id="@+id/button21"
