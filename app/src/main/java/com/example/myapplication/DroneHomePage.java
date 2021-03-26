@@ -185,7 +185,7 @@ public class DroneHomePage extends AppCompatActivity {
 //    Double weight = total weight of order
 //    if(weight>5.5 kg or 12.1254lb)
 //        return false;
-
+//am i in?
         return true;
     }
 
