@@ -38,7 +38,7 @@ public class CustomerCart extends AppCompatActivity {
     TextView priceText;
     TextView TaxText;
     TextView FinalTotal;
-
+    TextView CalorieText;
     //Shared Preference
     private SharedPreferences cartPreferences;
     private static final String SHARED_PREF_NAME = "mypref";
@@ -55,7 +55,7 @@ public class CustomerCart extends AppCompatActivity {
         priceText = findViewById(R.id.totalpricebeforetax);
         TaxText = findViewById(R.id.Tax);
         FinalTotal = findViewById(R.id.totalprice);
-
+        CalorieText = findViewById(R.id.totalCalorie);
 
 
         //Button
@@ -115,6 +115,10 @@ public class CustomerCart extends AppCompatActivity {
 
                 double tax = sum * 0.07;
                 double priceandtax = tax + sum;
+                int numbCal = 0;
+                for(DataSnapshot data: snapshot.getChildren()){
+                    numbCal = numbCal + (Integer.parseInt(data.child("Quantity").getValue().toString())*Integer.parseInt(data.child("Calories").getValue().toString()));
+                }
                 DecimalFormat df = new DecimalFormat("#.00");
                 String angleFormated = df.format(tax);
                 String angleForm = df.format(priceandtax);
@@ -122,7 +126,8 @@ public class CustomerCart extends AppCompatActivity {
                 TaxText.setText(angleFormated);
                 FinalTotal.setText(angleForm);
                 priceText.setText(angle);
-
+                String caltext = Integer.toString(numbCal);
+                CalorieText.setText(caltext);
 
                 //Setting price into Shared Prefrence
                 SharedPreferences.Editor editor = cartPreferences.edit();
