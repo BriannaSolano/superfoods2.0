@@ -11,21 +11,13 @@ import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.Reader;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.nio.charset.Charset;
-import java.text.DecimalFormat;
-import java.util.Arrays;
-import java.util.List;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 public class DroneOperatorPage extends AppCompatActivity  {
 
