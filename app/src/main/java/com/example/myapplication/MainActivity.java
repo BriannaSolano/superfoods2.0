@@ -8,9 +8,7 @@ import android.widget.Button;
 import android.content.Intent;
 
 import com.example.myapplication.ViewHolder.GuestHomeScreen;
-import com.google.android.gms.auth.api.signin.GoogleSignInApi;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.FirebaseDatabase;
 
 public class MainActivity extends AppCompatActivity {
     FirebaseAuth firebaseAuth;
@@ -43,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 firebaseAuth.signOut();
-                startActivity(new Intent(MainActivity.this, employee_sign_in.class));
+                startActivity(new Intent(MainActivity.this, Employee_sign_in.class));
             }
         });
 

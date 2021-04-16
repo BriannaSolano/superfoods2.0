@@ -22,8 +22,9 @@
         <activity android:name=".ChefHomePage" />
         <activity android:name=".WaiterHomePage" />
         <activity android:name=".DroneHomePage" />
+        <activity android:name=".DroneOperatorPage" />
         <activity android:name=".ManagerHomePage" />
-        <activity android:name=".employee_sign_in" />
+        <activity android:name=".Employee_sign_in" />
         <activity android:name=".inventory.dashboardActivity" />
         <activity android:name=".inventory.deleteItemActivity" />
         <activity android:name=".inventory.editItemActivity" />
