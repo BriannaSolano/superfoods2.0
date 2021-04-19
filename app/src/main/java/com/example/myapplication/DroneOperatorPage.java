@@ -28,6 +28,5 @@ public class DroneOperatorPage extends AppCompatActivity  {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_drone_operator_page);
-
     }
 }

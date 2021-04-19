@@ -146,7 +146,7 @@ public class DroneHomePage extends AppCompatActivity {
     }
 
     private static double[] getCoordinate(String address) throws JSONException, IOException {
-        String key = BuildConfig.G_API_KEY;
+        String key = BuildConfig.MAPS_API_KEY;
         String url = "https://maps.googleapis.com/maps/api/geocode/json?address=" + address + "&key=" + key;
         //String url = "http://localhost/test/temp/SoftEng/json.json";
         JSONObject json = readJsonFromUrl(url);

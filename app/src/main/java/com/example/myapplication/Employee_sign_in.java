@@ -120,7 +120,7 @@ public class Employee_sign_in extends AppCompatActivity {
                 else if (task.isSuccessful() && (employeeId.equals("5"))) {
                     progressDialog.dismiss();
                     Toast.makeText(Employee_sign_in.this, "Login Successful", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(Employee_sign_in.this, DroneOperatorPage.class));
+                    startActivity(new Intent(Employee_sign_in.this, MapsActivity.class));
                 }
                 else {
                     Toast.makeText(Employee_sign_in.this, "Login Failed", Toast.LENGTH_SHORT).show();
