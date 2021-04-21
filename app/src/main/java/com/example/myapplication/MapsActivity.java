@@ -1,21 +1,12 @@
-package com.example.myapplication;// Copyright 2020 Google LLC
-//
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-//
-//      http://www.apache.org/licenses/LICENSE-2.0
-//
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
+package com.example.myapplication;
 
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -27,22 +18,66 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
+    private DatabaseReference mDatabase;
+    private ArrayList<Marker> droneList = new ArrayList<Marker>();
+    private ArrayList<Polyline> lineList = new ArrayList<Polyline>();
+    private LatLng location= new LatLng(40.52243311455501, -74.45817069345065);
 
-    private Marker drone;
+    private static LatLng droneLoc = new LatLng(0, 0);
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
-        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
+
+        mDatabase = FirebaseDatabase.getInstance().getReference("Drones");
+        mDatabase.child("Drone1").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                if (!task.isSuccessful()) {
+                }
+                else {
+                    droneLoc = new LatLng((double)task.getResult().child("lat").getValue(), (double)task.getResult().child("long").getValue());
+                }
+            }
+        });
+        mDatabase.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                droneLoc = new LatLng((double)snapshot.child("Drone1").child("lat").getValue(), (double)snapshot.child("Drone1").child("long").getValue());
+                droneList.get(0).setPosition(droneLoc);
+
+                lineList.get(0).setPoints(Arrays.asList(location,droneLoc));
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
+        //mDatabase.addChildEventListener(postListener);
+
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
     }
+
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
@@ -50,24 +85,26 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         mMap.setMaxZoomPreference(18);
 
 
-        LatLng location= new LatLng(40.52243311455501, -74.45817069345065);
         mMap.addMarker(new MarkerOptions()
                 .position(location)
                 .title("Restaurant"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(location));
         mMap.moveCamera(CameraUpdateFactory.zoomTo(15));
 
-        LatLng droneLoc= new LatLng(40.52329360072032, -74.45696408027099);
-        drone = mMap.addMarker(new MarkerOptions()
+
+
+
+        Marker drone = mMap.addMarker(new MarkerOptions()
                 .position(droneLoc)
                 .title("Drone")
                 .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
         drone.setTag(0);
+        droneList.add(drone);
 
         PolylineOptions polylineOptions = new PolylineOptions()
                 .add(location)
                 .add(droneLoc);
         Polyline polyline = mMap.addPolyline(polylineOptions);
-
+        lineList.add(polyline);
     }
 }
