@@ -22,6 +22,9 @@
         <activity android:name=".ChefHomePage" />
         <activity android:name=".WaiterHomePage" />
         <activity android:name=".DroneHomePage" />
+        <activity android:name=".DroneHomePrep" />
+        <activity android:name=".DroneHomePost" />
+        <activity android:name=".DroneHomePostMap" />
         <activity android:name=".DroneOperatorPage" />
         <activity android:name=".MapsActivity" />
         <activity android:name=".ManagerHomePage" />

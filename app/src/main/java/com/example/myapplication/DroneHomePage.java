@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -26,15 +27,15 @@ import java.util.List;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 public class DroneHomePage extends AppCompatActivity {
 
     private FirebaseAuth firebaseAuth;
-    private Button logout;
     private EditText address;
     private EditText city;
     private Button confirm;
-    TextView restLatLong;
+    TextView weatherB;
     TextView deliverLatLong;
     TextView milesAway;
     TextView eligibility;
@@ -42,6 +43,7 @@ public class DroneHomePage extends AppCompatActivity {
     double[] userCoordinates = new double[2];
     double[] weather = new double[2];
     double[] restaurantCoordinates = {40.522425, -74.4581546};
+    private boolean click = false; //used for second time click on the confirm button. One for putting address one for moving on
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,16 +54,21 @@ public class DroneHomePage extends AppCompatActivity {
 
         address = (EditText) findViewById(R.id.drone_address_input);
         city = (EditText) findViewById(R.id.drone_city_input);
-        logout = (Button) findViewById(R.id.button23);
         confirm = (Button) findViewById(R.id.drone_address_input_confirmation);
-        restLatLong = (TextView)findViewById(R.id.restLatLong);
         deliverLatLong = (TextView)findViewById(R.id.deliverLatLong);
         milesAway = (TextView)findViewById(R.id.milesAway);
         eligibility = (TextView)findViewById(R.id.eligibility);
+        weatherB = (TextView)findViewById(R.id.weather);
 
         confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(click)
+                {
+                    startActivity(new Intent(DroneHomePage.this, DroneHomePost.class));
+                    Toast.makeText(DroneHomePage.this, "Order Placed", Toast.LENGTH_SHORT).show();
+                }
+                click = true;
                 Thread thread = new Thread(new Runnable() {
                     @Override
                     public void run() {
@@ -96,31 +103,38 @@ public class DroneHomePage extends AppCompatActivity {
 
 
 
-                restLatLong.setText(restaurantCoordinates[0]+", "+restaurantCoordinates[1]);
+
                 deliverLatLong.setText(userCoordinates[0]+ ", "+userCoordinates[1]);
                 double dist = calculateDistance(restaurantCoordinates[0], userCoordinates[0], restaurantCoordinates[1], userCoordinates[1]);
                 DecimalFormat tresDecimals = new DecimalFormat("#.###");
                 milesAway.setText(String.valueOf(tresDecimals.format(dist))+ " miles");
 
+                if(weather[0] > 10)
+                {
+                    weatherB.setText("Wind Too Strong");
+                }
+                else if(weather[1] == 0)
+                {
+                    weatherB.setText("Risk of Rain");
+                }
+                else
+                {
+                    weatherB.setText("Weather is Clear");
+                }
+
+
                 boolean dispatch = canDispatch(dist,weather);
                 if(dispatch){
                     eligibility.setText("Your order is eligible for drone delivery.");
+                    confirm.setText("Place Order");
                 }
                 else{
                     eligibility.setText("Your order is eligible for driven delivery.");
+                    confirm.setText("Dispatch Drone anyway (Demo Only)");
                 }
 
             }
 
-        });
-
-        logout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                firebaseAuth.signOut();
-                finish();
-                startActivity(new Intent(DroneHomePage.this, MainActivity.class));
-            }
         });
     }
 
@@ -218,7 +232,7 @@ public class DroneHomePage extends AppCompatActivity {
         {
             wC = 0;
         }
-        else{ wC = 1;}
+        else{ wC = 1;} //1 good 0 bad
 
         return new double[]{wind, wC};
 
@@ -263,7 +277,7 @@ public class DroneHomePage extends AppCompatActivity {
         //Weather checking
         double precipitation = weather[1];
         double wind = weather[0];
-        if(precipitation ==1||wind >10) {
+        if(precipitation == 0||wind > 10) {
             return false;
         }
 //
