@@ -107,6 +107,7 @@
                         android:text="$0"
                         android:textColor="@android:color/white"
                         android:textSize="17sp" />
+
                 </LinearLayout>
 
                 <LinearLayout
@@ -141,6 +142,24 @@
                         android:textColor="@android:color/white"
                         android:textSize="17sp" />
 
+                    <TextView
+                        android:id="@+id/textCalories"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="36dp"
+                        android:layout_marginRight="36dp"
+                        android:layout_weight="1"
+                        android:text="Calories: "
+                        android:textColor="@android:color/white" />
+
+                    <TextView
+                        android:id="@+id/totalCalorie"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0"
+
+                        android:textColor="@android:color/white" />
+
                 </LinearLayout>
 
                 <Button
@@ -156,17 +175,6 @@
 
 
     </androidx.cardview.widget.CardView>
-
-
-
-
-
-
-
-
-
-
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
