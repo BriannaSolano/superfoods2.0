@@ -10,15 +10,16 @@
         android:id="@+id/imageButton"
         android:layout_width="392dp"
         android:layout_height="205dp"
+        android:layout_marginTop="28dp"
         android:adjustViewBounds="true"
         android:maxWidth="100dp"
         android:maxHeight="100dp"
         android:scaleType="fitXY"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/start_new_order"
-        tools:layout_editor_absoluteY="7dp" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/start_new_order" />
 
     <ImageButton
         android:id="@+id/imageButton2"
@@ -49,5 +50,9 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.441"
         app:srcCompat="@drawable/recent_order_button" />
+
+
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -2,11 +2,12 @@ package com.example.myapplication;
 
 public class Food {
     private String Description, Discount, Image, MenuId, Name, Price, Calories;
-
+    private Diet Diet;
+    private Allergy Allergy;
     public Food() {
     }
 
-    public Food(String description, String discount, String image, String menuId, String name, String price, String calories) {
+    public Food(String description, String discount, String image, String menuId, String name, String price, String calories, Diet diet, Allergy allergy) {
         Description = description;
         Discount = discount;
         Image = image;
@@ -14,6 +15,8 @@ public class Food {
         Name = name;
         Price = price;
         Calories = calories;
+        Diet = diet;
+        Allergy = allergy;
     }
 
     public String getCalories() {
@@ -23,6 +26,14 @@ public class Food {
     public void setCalories(String calories) {
         Calories = calories;
     }
+
+    public Diet getDiet() {return Diet;}
+
+    public void setDiet(Diet diet) {Diet = diet;}
+
+    public Allergy getAllergy() {return Allergy;}
+
+    public void setAllergy(Allergy allergy) {Allergy = allergy;}
 
     public String getDescription() {
         return Description;
