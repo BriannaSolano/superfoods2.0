@@ -46,10 +46,7 @@ public class FoodList extends AppCompatActivity {
 
         //Calorie Button
 
-        See = findViewById(R.id.floatingActionButton);
-
-
-
+        //See = findViewById(R.id.floatingActionButton);
 
 
         //iniate FireBase
@@ -102,11 +99,11 @@ public class FoodList extends AppCompatActivity {
 
                 });
                 if(activate) {
-                    holder.food_title.setVisibility(recyclerView.VISIBLE);
+                    //holder.food_title.setVisibility(recyclerView.VISIBLE);
                     holder.food_calorie.setVisibility(recyclerView.VISIBLE);
                 }
                 else{
-                    holder.food_title.setVisibility(recyclerView.INVISIBLE);
+                    //holder.food_title.setVisibility(recyclerView.INVISIBLE);
                     holder.food_calorie.setVisibility(recyclerView.INVISIBLE);
                 }
 

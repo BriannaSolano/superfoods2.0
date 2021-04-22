@@ -25,6 +25,7 @@ public class dashboardActivity extends AppCompatActivity implements View.OnClick
 
     private CardView addItems;
     private CardView viewInventory;
+    private CardView orderFromSupplier;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,9 +34,12 @@ public class dashboardActivity extends AppCompatActivity implements View.OnClick
 
         addItems = (CardView)findViewById(R.id.addItems);
         viewInventory = (CardView) findViewById(R.id.viewInventory);
+        orderFromSupplier = (CardView) findViewById(R.id.orderFromSupplier);
+
 
         addItems.setOnClickListener(this);
         viewInventory.setOnClickListener(this);
+        orderFromSupplier.setOnClickListener(this);
     }
 
 
@@ -46,6 +50,7 @@ public class dashboardActivity extends AppCompatActivity implements View.OnClick
         switch (view.getId()){
             case R.id.addItems : i = new Intent(this,addItemActivity.class); startActivity(i); break;
             case R.id.viewInventory : i = new Intent(this,viewInventoryActivity.class);startActivity(i); break;
+            case R.id.orderFromSupplier : i = new Intent(this,orderFromSupplierActivity.class);startActivity(i); break;
             default: break;
         }
     }

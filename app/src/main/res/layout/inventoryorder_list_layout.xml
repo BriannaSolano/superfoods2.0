@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/cardview_shadow_end_color"
+    android:orientation="vertical"
+    app:cardCornerRadius="3dp"
+    app:cardElevation="3dp"
+    app:cardUseCompatPadding="true"
+    app:contentPadding="1dp">
+
+    <RelativeLayout
+        android:id="@+id/viewitemsrellayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/backgroundgradientblue"
+        android:orientation="vertical"
+        android:padding="2dp">
+
+
+        <TextView
+            android:id="@+id/textViewItemQty"
+            android:layout_width="57dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="0dp"
+            android:layout_marginLeft="0dp"
+            android:layout_marginTop="14dp"
+            android:editable="true"
+            android:gravity="center_horizontal"
+            android:hint="Qty"
+            android:inputType="number"
+            android:textColor="#ffff" />
+
+        <TextView
+            android:id="@+id/textViewItemName"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="9dp"
+            android:layout_marginLeft="9dp"
+            android:layout_marginTop="14dp"
+            android:layout_toEndOf="@+id/textViewItemQty"
+            android:layout_toRightOf="@+id/textViewItemQty"
+            android:hint="Name"
+            android:singleLine="false" />
+
+        <TextView
+            android:id="@+id/textViewItemCost"
+            android:layout_width="63dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="9dp"
+            android:layout_marginLeft="9dp"
+            android:layout_marginTop="14dp"
+            android:layout_toEndOf="@+id/textViewItemName"
+            android:layout_toRightOf="@+id/textViewItemName"
+            android:gravity="right"
+            android:hint="$000.00"
+            android:singleLine="true" />
+
+        <TextView
+            android:id="@+id/textViewTotalAmnt"
+            android:layout_width="63dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="9dp"
+            android:layout_marginLeft="9dp"
+            android:layout_marginTop="14dp"
+            android:layout_toEndOf="@+id/textViewItemCost"
+            android:layout_toRightOf="@+id/textViewItemCost"
+            android:gravity="right"
+            android:hint="$000.00"
+            android:singleLine="true" />
+
+
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>

@@ -6,7 +6,8 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 
     <application
         android:allowBackup="true"
@@ -15,7 +16,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
-        <activity android:name=".PaymentDetails"></activity>
+        <activity android:name=".inventory.orderFromSupplierActivity"></activity>
+        <activity android:name=".PaymentDetails" />
         <activity android:name=".Pay" />
         <activity android:name=".CustomerCart" />
         <activity android:name=".SelectedFood" />
@@ -28,7 +30,7 @@
         <activity android:name=".inventory.deleteItemActivity" />
         <activity android:name=".inventory.editItemActivity" />
         <activity android:name=".inventory.viewInventoryActivity" />
-        <activity android:name=".inventory.addItemActivity"/>
+        <activity android:name=".inventory.addItemActivity" />
         <activity
             android:name=".ViewHolder.CustomerHomeScreen"
             android:label="@string/title_activity_customer_accont_home" />

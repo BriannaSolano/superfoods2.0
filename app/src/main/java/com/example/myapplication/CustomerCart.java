@@ -55,7 +55,7 @@ public class CustomerCart extends AppCompatActivity {
         priceText = findViewById(R.id.totalpricebeforetax);
         TaxText = findViewById(R.id.Tax);
         FinalTotal = findViewById(R.id.totalprice);
-        CalorieText = findViewById(R.id.totalCalorie);
+        //CalorieText = findViewById(R.id.totalCalorie);
 
 
         //Button
