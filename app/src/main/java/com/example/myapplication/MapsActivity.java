@@ -3,10 +3,18 @@ package com.example.myapplication;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.graphics.Color;
+import android.graphics.Typeface;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -30,16 +38,16 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
     private DatabaseReference mDatabase;
     private ArrayList<Marker> droneList = new ArrayList<Marker>();
+    private ArrayList<LatLng> droneLoc = new ArrayList<LatLng>();
     private ArrayList<Polyline> lineList = new ArrayList<Polyline>();
     private LatLng location= new LatLng(40.52243311455501, -74.45817069345065);
-
-    private static LatLng droneLoc = new LatLng(0, 0);
 
 
     @Override
@@ -47,24 +55,23 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
 
+        for(int i = 1; i <= 4; i++) {
+            droneLoc.add(new LatLng(0, 0));
+        }
+
         mDatabase = FirebaseDatabase.getInstance().getReference("Drones");
-        mDatabase.child("Drone1").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DataSnapshot> task) {
-                if (!task.isSuccessful()) {
-                }
-                else {
-                    droneLoc = new LatLng((double)task.getResult().child("lat").getValue(), (double)task.getResult().child("long").getValue());
-                }
-            }
-        });
+
+
+
         mDatabase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                droneLoc = new LatLng((double)snapshot.child("Drone1").child("lat").getValue(), (double)snapshot.child("Drone1").child("long").getValue());
-                droneList.get(0).setPosition(droneLoc);
+                for(int i = 1; i <= 4; i++) {
+                    droneLoc.set(i-1, new LatLng((double) snapshot.child("Drone"+i).child("lat").getValue(), (double) snapshot.child("Drone"+i).child("long").getValue()));
+                    droneList.get(i-1).setPosition(droneLoc.get(i-1));
 
-                lineList.get(0).setPoints(Arrays.asList(location,droneLoc));
+                    lineList.get(i-1).setPoints(Arrays.asList(location, droneLoc.get(i-1)));
+                }
             }
 
             @Override
@@ -78,8 +85,10 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         mapFragment.getMapAsync(this);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     public void onMapReady(GoogleMap googleMap) {
+
         mMap = googleMap;
         mMap.setMinZoomPreference(13);
         mMap.setMaxZoomPreference(18);
@@ -91,20 +100,53 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         mMap.moveCamera(CameraUpdateFactory.newLatLng(location));
         mMap.moveCamera(CameraUpdateFactory.zoomTo(15));
 
+        mMap.setInfoWindowAdapter(new GoogleMap.InfoWindowAdapter() {
+
+            @Override
+            public View getInfoWindow(Marker arg0) {
+                return null;
+            }
+
+            @Override
+            public View getInfoContents(Marker marker) {
+
+                LinearLayout info = new LinearLayout(MapsActivity.this);
+                info.setOrientation(LinearLayout.VERTICAL);
+
+                TextView title = new TextView(MapsActivity.this);
+                title.setTextColor(Color.BLACK);
+                title.setGravity(Gravity.CENTER);
+                title.setTypeface(null, Typeface.BOLD);
+                title.setText(marker.getTitle());
+
+                TextView snippet = new TextView(MapsActivity.this);
+                snippet.setTextColor(Color.GRAY);
+                snippet.setText(marker.getSnippet());
+
+                info.addView(title);
+                info.addView(snippet);
+
+                return info;
+            }
+        });
+
+        for(int i = 1; i <= 4; i++) //draw markers and lines for each drone. For now the quantity of drones is hardcoded. For the future query the database
+        {
+            Marker drone = mMap.addMarker(new MarkerOptions()
+                    .position(droneLoc.get(i-1))
+                    .title("Drone "+i)
+                    .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE))
+                    .snippet("Status: en route \nBattery: " + ThreadLocalRandom.current().nextInt(60,80) +"%"));
+            drone.setTag(i);
+            droneList.add(drone);
+
+            PolylineOptions polylineOptions = new PolylineOptions()
+                    .add(location)
+                    .add(droneLoc.get(i-1));
+            Polyline polyline = mMap.addPolyline(polylineOptions);
+            lineList.add(polyline);
+        }
 
 
-
-        Marker drone = mMap.addMarker(new MarkerOptions()
-                .position(droneLoc)
-                .title("Drone")
-                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
-        drone.setTag(0);
-        droneList.add(drone);
-
-        PolylineOptions polylineOptions = new PolylineOptions()
-                .add(location)
-                .add(droneLoc);
-        Polyline polyline = mMap.addPolyline(polylineOptions);
-        lineList.add(polyline);
     }
 }
