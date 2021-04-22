@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -177,35 +178,62 @@ public class Pay extends AppCompatActivity {
                     //Subtract ingredients from inventory
                     ArrayList<String> foodIngredients = new ArrayList<String>();
                     ArrayList<String> eliminatedIngredients = new ArrayList<String>();
-                    String description = menu.child(foodCode).child("Description").getKey().toLowerCase();
-                    ingredients = ingredients.toLowerCase();
-                    foodIngredients.addAll(Arrays.asList(description.split(" / ")));
-                    eliminatedIngredients.addAll(Arrays.asList(ingredients.split(",")));
 
-                    foodIngredients.removeIf(s -> eliminatedIngredients.contains(s));
-
-                    inventory.runTransaction(new Transaction.Handler() {
+                    menu.runTransaction(new Transaction.Handler() {
                         @NonNull
                         @Override
                         public Transaction.Result doTransaction(@NonNull MutableData currentData) {
+                            String description;
                             for(MutableData item : currentData.getChildren()) {
                                 Map<String, Object> map = (Map<String, Object>) item.getValue();
-                                String name = String.valueOf(map.get("name")).toLowerCase();
-                                if(foodIngredients.contains(name)) {
-                                    int count = (int) map.get("count");
-                                    count -= Integer.parseInt(amount);
-                                    map.replace("count", count);
-                                    currentData.setValue(map);
+                                String id = String.valueOf(item.getKey());
+                                Log.d("IDFOUND", id);
+                                if(id.equals(foodCode)) {
+                                    description = String.valueOf(map.get("Description")).toLowerCase();
+
+                                    String myingredients = ingredients.toLowerCase();
+                                    foodIngredients.addAll(Arrays.asList(description.split(" / ")));
+                                    eliminatedIngredients.addAll(Arrays.asList(myingredients.split(",")));
+                                    Log.d("DESCRIPTION", description);
+                                    Log.d("ELIMINATEDINGREDIENTS", eliminatedIngredients.toString());
+                                    foodIngredients.removeIf(s -> eliminatedIngredients.contains(s));
+                                    Log.d("FOODINGREDIENTS", foodIngredients.toString());
+                                    inventory.runTransaction(new Transaction.Handler() {
+                                        @NonNull
+                                        @Override
+                                        public Transaction.Result doTransaction(@NonNull MutableData currentData) {
+                                            for(MutableData item : currentData.getChildren()) {
+                                                Map<String, Object> map = (Map<String, Object>) item.getValue();
+                                                String name = String.valueOf(map.get("name")).toLowerCase();
+                                                Log.d("ORDER", name);
+                                                if(foodIngredients.contains(name)) {
+                                                    long count = (long) map.get("count");
+                                                    count -= Integer.parseInt(amount);
+                                                    map.replace("count", count);
+                                                    item.setValue(map);
+                                                }
+                                            }
+                                            return Transaction.success(currentData);
+                                        }
+
+                                        @Override
+                                        public void onComplete(@Nullable DatabaseError error, boolean committed, @Nullable DataSnapshot currentData) {
+                                            return;
+                                        }
+                                    });
+                                    break;
                                 }
+
                             }
-                            return Transaction.success(currentData);
+                            return Transaction.abort();
                         }
 
                         @Override
                         public void onComplete(@Nullable DatabaseError error, boolean committed, @Nullable DataSnapshot currentData) {
-                            return;
+
                         }
                     });
+
                 }
                 ordermade.child(phone).child("OrderStatus").setValue("Order Placed");
                 cartinformation.removeValue();

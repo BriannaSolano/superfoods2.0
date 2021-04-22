@@ -1,6 +1,7 @@
 package com.example.myapplication.inventory;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -34,7 +35,9 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.MutableData;
 import com.google.firebase.database.Query;
+import com.google.firebase.database.Transaction;
 import com.google.firebase.database.ValueEventListener;
 
 import java.io.File;
@@ -54,6 +57,7 @@ public class orderFromSupplierActivity extends AppCompatActivity {
     private FirebaseRecyclerAdapter<Items, OrderFormAdapter.OrderFormViewHolder> firebaseRecyclerAdapter;
     private ArrayList<ArrayList<String>> data;
     private Button buttonCreateForm;
+    private Button buttonFillOrder;
 
     public void updateFormTotal() {
         float runningTotal = 0;
@@ -69,6 +73,7 @@ public class orderFromSupplierActivity extends AppCompatActivity {
         setContentView(R.layout.activity_order_from_supplier);
         formTotal = findViewById(R.id.textViewTotalAmt);
         buttonCreateForm = findViewById(R.id.buttonCreateOrderForm);
+        buttonFillOrder = findViewById(R.id.buttonFillOrder);
         recyclerView = findViewById(R.id.recyclerViewOrderForm);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setHasFixedSize(false);
@@ -133,6 +138,44 @@ public class orderFromSupplierActivity extends AppCompatActivity {
                     Toast.makeText(orderFromSupplierActivity.this, "Order Form Creation Failed!", Toast.LENGTH_LONG);
                 }
                 Toast.makeText(orderFromSupplierActivity.this, "Order Form Created in Documents Folder!", Toast.LENGTH_LONG);
+            }
+        });
+
+        buttonFillOrder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                inventory.runTransaction(new Transaction.Handler() {
+                    @RequiresApi(api = Build.VERSION_CODES.N)
+                    @NonNull
+                    @Override
+                    public Transaction.Result doTransaction(@NonNull MutableData currentData) {
+                        for(ArrayList<String> row : data) {
+                            String name = row.get(1);
+                            int qty;
+                            try {
+                                 qty = Integer.parseInt(row.get(0));
+                            } catch(Exception e) {
+                                qty = 0;
+                            }
+                            for(MutableData inventoryItemData : currentData.getChildren()) {
+                                Map<String, Object> inventoryItem = (Map<String, Object>) inventoryItemData.getValue();
+                                String inventoryName = String.valueOf(inventoryItem.get("name"));
+                                if(name.equalsIgnoreCase(inventoryName)) {
+                                    long currCount = (long) inventoryItem.get("count");
+                                    inventoryItem.replace("count", qty + currCount);
+                                    inventoryItemData.setValue(inventoryItem);
+                                    break;
+                                }
+                            }
+                        }
+                        return Transaction.success(currentData);
+                    }
+
+                    @Override
+                    public void onComplete(@Nullable DatabaseError error, boolean committed, @Nullable DataSnapshot currentData) {
+                        Toast.makeText(orderFromSupplierActivity.this, "Order Filled Successfully!", Toast.LENGTH_LONG);
+                    }
+                });
             }
         });
     }
