@@ -90,8 +90,8 @@ public class DroneHomePostMap extends AppCompatActivity implements OnMapReadyCal
         mMap.addMarker(new MarkerOptions()
                 .position(location)
                 .title("Restaurant"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(location));
-        mMap.moveCamera(CameraUpdateFactory.zoomTo(15));
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(40.50884792517122, -74.43638237354567)));
+        mMap.moveCamera(CameraUpdateFactory.zoomTo(13));
 
         mMap.setInfoWindowAdapter(new GoogleMap.InfoWindowAdapter() {
 
@@ -127,7 +127,7 @@ public class DroneHomePostMap extends AppCompatActivity implements OnMapReadyCal
                 .position(droneLoc.get(0))
                 .title("Drone "+4)
                 .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE))
-                .snippet("Status: en route \nEstimate Time: 1 minute"));
+                .snippet("Status: en route \nEstimate Time: 7 minute"));
         drone.setTag(0);
         droneList.add(drone);
 

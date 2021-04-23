@@ -36,6 +36,7 @@ public class DroneHomePage extends AppCompatActivity {
     private EditText city;
     private Button confirm;
     TextView weatherB;
+    TextView weight;
     TextView deliverLatLong;
     TextView milesAway;
     TextView eligibility;
@@ -59,6 +60,7 @@ public class DroneHomePage extends AppCompatActivity {
         milesAway = (TextView)findViewById(R.id.milesAway);
         eligibility = (TextView)findViewById(R.id.eligibility);
         weatherB = (TextView)findViewById(R.id.weather);
+        weight = (TextView)findViewById(R.id.textView36);
 
         confirm.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -115,7 +117,7 @@ public class DroneHomePage extends AppCompatActivity {
                 }
                 else if(weather[1] == 0)
                 {
-                    weatherB.setText("Risk of Rain");
+                    weatherB.setText("Risk of Precipitation");
                 }
                 else
                 {
@@ -132,6 +134,8 @@ public class DroneHomePage extends AppCompatActivity {
                     eligibility.setText("Your order is eligible for driven delivery.");
                     confirm.setText("Dispatch Drone anyway (Demo Only)");
                 }
+
+                weight.setText("6 Lbs");
 
             }
 
