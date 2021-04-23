@@ -1,13 +1,21 @@
 package com.example.myapplication;
 
 public class Food {
+<<<<<<< Updated upstream
     private String Description, Discount, Image, MenuId, Name, Price, Calories;
+=======
+    private String Description, Discount, Image, MenuId, Name, Price, Calories, ItemID;
+>>>>>>> Stashed changes
     private Diet Diet;
     private Allergy Allergy;
     public Food() {
     }
 
+<<<<<<< Updated upstream
     public Food(String description, String discount, String image, String menuId, String name, String price, String calories, Diet diet, Allergy allergy) {
+=======
+    public Food(String description, String discount, String image, String menuId, String name, String price, String calories, String itemID, Diet diet, Allergy allergy) {
+>>>>>>> Stashed changes
         Description = description;
         Discount = discount;
         Image = image;
@@ -15,6 +23,10 @@ public class Food {
         Name = name;
         Price = price;
         Calories = calories;
+<<<<<<< Updated upstream
+=======
+        ItemID = itemID;
+>>>>>>> Stashed changes
         Diet = diet;
         Allergy = allergy;
     }
@@ -81,5 +93,13 @@ public class Food {
 
     public void setPrice(String price) {
         Price = price;
+    }
+
+    public String getItemID() {
+        return ItemID;
+    }
+
+    public void setItemID(String itemID) {
+        ItemID = itemID;
     }
 }

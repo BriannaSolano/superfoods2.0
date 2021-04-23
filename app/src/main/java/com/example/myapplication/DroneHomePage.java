@@ -17,13 +17,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
-import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.Charset;
 import java.text.DecimalFormat;
-import java.util.Arrays;
-import java.util.List;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -40,7 +36,6 @@ public class DroneHomePage extends AppCompatActivity {
     TextView eligibility;
 
     double[] userCoordinates = new double[2];
-    double[] weather = new double[2];
     double[] restaurantCoordinates = {40.522425, -74.4581546};
 
     @Override
@@ -68,47 +63,44 @@ public class DroneHomePage extends AppCompatActivity {
                         try {
                             String fullAddress = buildAddress(address.getText().toString(), city.getText().toString());
                             userCoordinates = getCoordinate(fullAddress);
-
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
                     }
                 });
                 thread.start();
-                Thread thread2 = new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        try {
-                            weather = weatherCheck();
-
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                    }
-                });
-                thread2.start();
                 try {
                     thread.join();
-                    thread2.join();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
 
+<<<<<<< Updated upstream
 
 
+=======
+>>>>>>> Stashed changes
                 restLatLong.setText(restaurantCoordinates[0]+", "+restaurantCoordinates[1]);
                 deliverLatLong.setText(userCoordinates[0]+ ", "+userCoordinates[1]);
                 double dist = calculateDistance(restaurantCoordinates[0], userCoordinates[0], restaurantCoordinates[1], userCoordinates[1]);
                 DecimalFormat tresDecimals = new DecimalFormat("#.###");
                 milesAway.setText(String.valueOf(tresDecimals.format(dist))+ " miles");
+<<<<<<< Updated upstream
 
                 boolean dispatch = canDispatch(dist,weather);
+=======
+                boolean dispatch = canDispatch(dist);
+>>>>>>> Stashed changes
                 if(dispatch){
                     eligibility.setText("Your order is eligible for drone delivery.");
                 }
                 else{
                     eligibility.setText("Your order is eligible for driven delivery.");
                 }
+<<<<<<< Updated upstream
+=======
+                confirm.setText(String.valueOf(dispatch));
+>>>>>>> Stashed changes
 
             }
 
@@ -146,7 +138,11 @@ public class DroneHomePage extends AppCompatActivity {
     }
 
     private static double[] getCoordinate(String address) throws JSONException, IOException {
+<<<<<<< Updated upstream
         String key = "";
+=======
+        String key = "AIzaSyAdG6u7YLRCGRtNnkEDDuEWKmJD7Srrz10";
+>>>>>>> Stashed changes
         String url = "https://maps.googleapis.com/maps/api/geocode/json?address=" + address + "&key=" + key;
         //String url = "http://localhost/test/temp/SoftEng/json.json";
         JSONObject json = readJsonFromUrl(url);
@@ -160,6 +156,7 @@ public class DroneHomePage extends AppCompatActivity {
         return out;
     }
 
+<<<<<<< Updated upstream
     private static double[] weatherCheck() throws IOException, JSONException {
         List<String> badWeatherList = Arrays.asList("Slight Chance Rain Showers","Chance Rain Showers");
 
@@ -224,6 +221,8 @@ public class DroneHomePage extends AppCompatActivity {
 
     }
 
+=======
+>>>>>>> Stashed changes
     private static String buildAddress(String address, String city) {
         String out = address + ", " + city + ", NJ";
         out = out.replace(" ", "+");
@@ -253,19 +252,27 @@ public class DroneHomePage extends AppCompatActivity {
         return (c * r);
     }
 
-    private static boolean canDispatch(double distance, double[] weather) {
+    private static boolean canDispatch(double distance) {
 
         //Distance Checking
         if(distance > 8.143) {
             return false;
         }
 
+<<<<<<< Updated upstream
         //Weather checking
         double precipitation = weather[1];
         double wind = weather[0];
         if(precipitation ==1||wind >10) {
             return false;
         }
+=======
+//    //Weather checking
+//    Int wind; => //online data scrub
+//    Boolean Precipitation; => //Online data scrub 1 for yes 0 for no
+//            if(precipitation ==1||wind >10)
+//            return false;
+>>>>>>> Stashed changes
 //
 //    //Weight check
 //    Double weight = total weight of order
