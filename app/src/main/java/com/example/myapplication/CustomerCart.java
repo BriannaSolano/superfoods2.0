@@ -39,6 +39,9 @@ public class CustomerCart extends AppCompatActivity {
     TextView TaxText;
     TextView FinalTotal;
     TextView CalorieText;
+    TextView SaltText;
+    TextView FatText;
+    TextView SugarText;
     //Shared Preference
     private SharedPreferences cartPreferences;
     private static final String SHARED_PREF_NAME = "mypref";
@@ -56,6 +59,9 @@ public class CustomerCart extends AppCompatActivity {
         TaxText = findViewById(R.id.Tax);
         FinalTotal = findViewById(R.id.totalprice);
         CalorieText = findViewById(R.id.totalCalorie);
+        SugarText = findViewById(R.id.totalSugar);
+        SaltText = findViewById(R.id.totalSalt);
+        FatText = findViewById(R.id.totalFat);
 
 
         //Button
@@ -116,8 +122,20 @@ public class CustomerCart extends AppCompatActivity {
                 double tax = sum * 0.07;
                 double priceandtax = tax + sum;
                 int numbCal = 0;
+                int numbSugar =0;
+                int numbSalt = 0;
+                int numbFat = 0;
                 for(DataSnapshot data: snapshot.getChildren()){
                     numbCal = numbCal + (Integer.parseInt(data.child("Quantity").getValue().toString())*Integer.parseInt(data.child("Calories").getValue().toString()));
+                }
+                for(DataSnapshot data: snapshot.getChildren()){
+                    numbSugar = numbSugar + (Integer.parseInt(data.child("Quantity").getValue().toString())*Integer.parseInt(data.child("Sugar").getValue().toString()));
+                }
+                for(DataSnapshot data: snapshot.getChildren()){
+                    numbSalt = numbSalt + (Integer.parseInt(data.child("Quantity").getValue().toString())*Integer.parseInt(data.child("Salt").getValue().toString()));
+                }
+                for(DataSnapshot data: snapshot.getChildren()){
+                    numbFat = numbFat + (Integer.parseInt(data.child("Quantity").getValue().toString())*Integer.parseInt(data.child("Fat").getValue().toString()));
                 }
                 DecimalFormat df = new DecimalFormat("#.00");
                 String angleFormated = df.format(tax);
@@ -128,6 +146,12 @@ public class CustomerCart extends AppCompatActivity {
                 priceText.setText(angle);
                 String caltext = Integer.toString(numbCal);
                 CalorieText.setText(caltext);
+                String sugtext = Integer.toString(numbSugar);
+                SugarText.setText(sugtext);
+                String fattext = Integer.toString(numbFat);
+                FatText.setText(fattext);
+                String salttext = Integer.toString(numbSalt);
+                SaltText.setText(salttext);
 
                 //Setting price into Shared Prefrence
                 SharedPreferences.Editor editor = cartPreferences.edit();

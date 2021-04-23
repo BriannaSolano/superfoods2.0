@@ -22,11 +22,8 @@ import com.example.myapplication.ViewHolder.FoodHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-<<<<<<< Updated upstream
-=======
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
->>>>>>> Stashed changes
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
@@ -120,11 +117,6 @@ public class FoodList extends AppCompatActivity implements AdapterView.OnItemSel
 
                 }
                 break;
-<<<<<<< Updated upstream
-
-            }
-
-=======
 
             }
             case 3: {
@@ -138,8 +130,6 @@ public class FoodList extends AppCompatActivity implements AdapterView.OnItemSel
                 break;
 
             }
-
->>>>>>> Stashed changes
         }
         FirebaseRecyclerOptions<Food> options = new FirebaseRecyclerOptions.Builder<Food>()
                 .setQuery(query, Food.class)
@@ -154,9 +144,9 @@ public class FoodList extends AppCompatActivity implements AdapterView.OnItemSel
             @Override
            protected void onBindViewHolder(@NonNull FoodHolder holder, int position, @NonNull Food model){
                 holder.food_name.setText(model.getName());
-<<<<<<< Updated upstream
-                holder.food_calorie.setText(model.getCalories());
-=======
+                holder.food_salt.setText(model.getSalt());
+                holder.food_fat.setText(model.getFat());
+                holder.food_sugar.setText(model.getSugar());
                 FirebaseDatabase database2;
                 database2 = FirebaseDatabase.getInstance();
                 DatabaseReference ingredientList;
@@ -197,8 +187,6 @@ public class FoodList extends AppCompatActivity implements AdapterView.OnItemSel
                         Log.w(TAG, "Failed to read value.", error.toException());
                     }
                 });
-
->>>>>>> Stashed changes
                 See.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -209,20 +197,24 @@ public class FoodList extends AppCompatActivity implements AdapterView.OnItemSel
                 });
                 if(activate) {
                     holder.food_title.setVisibility(recyclerView.VISIBLE);
+                    holder.food_title1.setVisibility(recyclerView.VISIBLE);
+                    holder.food_title2.setVisibility(recyclerView.VISIBLE);
+                    holder.food_title3.setVisibility(recyclerView.VISIBLE);
                     holder.food_calorie.setVisibility(recyclerView.VISIBLE);
-<<<<<<< Updated upstream
+                    holder.food_sugar.setVisibility(recyclerView.VISIBLE);
+                    holder.food_fat.setVisibility(recyclerView.VISIBLE);
+                    holder.food_salt.setVisibility(recyclerView.VISIBLE);
                 }
                 else{
                     holder.food_title.setVisibility(recyclerView.INVISIBLE);
+                    holder.food_title1.setVisibility(recyclerView.INVISIBLE);
+                    holder.food_title2.setVisibility(recyclerView.INVISIBLE);
+                    holder.food_title3.setVisibility(recyclerView.INVISIBLE);
                     holder.food_calorie.setVisibility(recyclerView.INVISIBLE);
+                    holder.food_sugar.setVisibility(recyclerView.INVISIBLE);
+                    holder.food_fat.setVisibility(recyclerView.INVISIBLE);
+                    holder.food_salt.setVisibility(recyclerView.INVISIBLE);
                 }
-=======
-                }
-                else{
-                    holder.food_title.setVisibility(recyclerView.INVISIBLE);
-                    holder.food_calorie.setVisibility(recyclerView.INVISIBLE);
-                }
->>>>>>> Stashed changes
 
                 Picasso.with(getBaseContext()).load(model.getImage())
                         .into(holder.food_image);
@@ -313,14 +305,11 @@ public class FoodList extends AppCompatActivity implements AdapterView.OnItemSel
                            code = 2;
                            break;
                        }
-<<<<<<< Updated upstream
-=======
                        case "Dairy": {
                            output = "Dairy";
                            code = 3;
                            break;
                        }
->>>>>>> Stashed changes
                        default:{
                            output = "None";
                            code = 0;

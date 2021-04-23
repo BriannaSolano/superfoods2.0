@@ -44,7 +44,37 @@
                 android:layout_marginBottom="8dp"
                 android:gravity="center_vertical"
                 android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
 
+                    <TextView
+                        android:id="@+id/textView34"
+                        android:layout_width="246dp"
+                        android:layout_height="wrap_content"
+                        android:text="" />
+
+                    <TextView
+                        android:id="@+id/textView30"
+                        android:layout_width="46dp"
+                        android:layout_height="wrap_content"
+                        android:textColor="@android:color/white"
+                        android:text="Fat: " />
+
+
+                    <TextView
+                        android:id="@+id/totalFat"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@android:color/white"
+                        android:layout_marginEnd="28dp"
+                        android:layout_marginRight="28dp"
+                        android:text="TotalFat" />
+
+                </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -69,11 +99,25 @@
 
                     <TextView
                         android:id="@+id/totalpricebeforetax"
-                        android:layout_width="wrap_content"
+                        android:layout_width="112dp"
                         android:layout_height="wrap_content"
                         android:text="$0"
                         android:textColor="@android:color/white"
                         android:textSize="17sp" />
+
+                    <TextView
+                        android:id="@+id/textView31"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Sugar: "
+                        android:textColor="@android:color/white" />
+
+                    <TextView
+                        android:id="@+id/totalSugar"
+                        android:layout_width="wrap_content"
+                        android:textColor="@android:color/white"
+                        android:layout_height="wrap_content"
+                        android:text="TotalSugar" />
 
                 </LinearLayout>
 
@@ -102,11 +146,26 @@
 
                     <TextView
                         android:id="@+id/Tax"
-                        android:layout_width="132dp"
+                        android:layout_width="172dp"
                         android:layout_height="wrap_content"
                         android:text="$0"
                         android:textColor="@android:color/white"
                         android:textSize="17sp" />
+
+                    <TextView
+                        android:id="@+id/textView13"
+                        android:layout_width="51dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Salt: "
+                        android:textColor="@android:color/white" />
+
+                    <TextView
+                        android:id="@+id/totalSalt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="TotalSalt"
+                        android:textColor="@android:color/white" />
 
                 </LinearLayout>
 
