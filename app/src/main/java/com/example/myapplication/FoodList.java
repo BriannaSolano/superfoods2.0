@@ -132,6 +132,9 @@ public class FoodList extends AppCompatActivity implements AdapterView.OnItemSel
            protected void onBindViewHolder(@NonNull FoodHolder holder, int position, @NonNull Food model){
                 holder.food_name.setText(model.getName());
                 holder.food_calorie.setText(model.getCalories());
+                holder.food_salt.setText(model.getSalt());
+                holder.food_fat.setText(model.getFat());
+                holder.food_sugar.setText(model.getSugar());
                 See.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -142,11 +145,23 @@ public class FoodList extends AppCompatActivity implements AdapterView.OnItemSel
                 });
                 if(activate) {
                     holder.food_title.setVisibility(recyclerView.VISIBLE);
+                    holder.food_title1.setVisibility(recyclerView.VISIBLE);
+                    holder.food_title2.setVisibility(recyclerView.VISIBLE);
+                    holder.food_title3.setVisibility(recyclerView.VISIBLE);
                     holder.food_calorie.setVisibility(recyclerView.VISIBLE);
+                    holder.food_sugar.setVisibility(recyclerView.VISIBLE);
+                    holder.food_fat.setVisibility(recyclerView.VISIBLE);
+                    holder.food_salt.setVisibility(recyclerView.VISIBLE);
                 }
                 else{
                     holder.food_title.setVisibility(recyclerView.INVISIBLE);
+                    holder.food_title1.setVisibility(recyclerView.INVISIBLE);
+                    holder.food_title2.setVisibility(recyclerView.INVISIBLE);
+                    holder.food_title3.setVisibility(recyclerView.INVISIBLE);
                     holder.food_calorie.setVisibility(recyclerView.INVISIBLE);
+                    holder.food_sugar.setVisibility(recyclerView.INVISIBLE);
+                    holder.food_fat.setVisibility(recyclerView.INVISIBLE);
+                    holder.food_salt.setVisibility(recyclerView.INVISIBLE);
                 }
 
                 Picasso.with(getBaseContext()).load(model.getImage())
