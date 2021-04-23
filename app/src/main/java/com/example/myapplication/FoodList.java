@@ -22,9 +22,12 @@ import com.example.myapplication.ViewHolder.FoodHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 public class FoodList extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
@@ -116,7 +119,17 @@ public class FoodList extends AppCompatActivity implements AdapterView.OnItemSel
                 break;
 
             }
+            case 3: {
+                if (name.equals("Dairy")) {
+                    query = foodList.orderByChild("Dairy").equalTo(categoryId+"_"+"1");
 
+                } else if (name.equals("None")) {
+                    query = foodList.orderByChild("MenuId").equalTo(categoryId);
+
+                }
+                break;
+
+            }
         }
         FirebaseRecyclerOptions<Food> options = new FirebaseRecyclerOptions.Builder<Food>()
                 .setQuery(query, Food.class)
@@ -131,10 +144,49 @@ public class FoodList extends AppCompatActivity implements AdapterView.OnItemSel
             @Override
            protected void onBindViewHolder(@NonNull FoodHolder holder, int position, @NonNull Food model){
                 holder.food_name.setText(model.getName());
-                holder.food_calorie.setText(model.getCalories());
                 holder.food_salt.setText(model.getSalt());
                 holder.food_fat.setText(model.getFat());
                 holder.food_sugar.setText(model.getSugar());
+                FirebaseDatabase database2;
+                database2 = FirebaseDatabase.getInstance();
+                DatabaseReference ingredientList;
+                ingredientList = database2.getReference("Food").child(model.getItemID()).child("List");
+                ingredientList.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        final int[] Sum = {0};
+                        final int[] Sum1 = {0};
+
+                        for (DataSnapshot data : dataSnapshot.getChildren()) {
+                            Sum[0]+=Integer.parseInt(data.child("Calories").getValue().toString());
+                            FirebaseDatabase database3;
+                            database3 = FirebaseDatabase.getInstance();
+                            DatabaseReference ingredientInfo;
+                            String id = data.child("ID").getValue().toString();
+                            ingredientInfo = database3.getReference("Inventory").child(id).child("Calories");
+                            ingredientInfo.addValueEventListener(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(DataSnapshot dataSnapshot) {
+                                    Sum1[0] += Integer.parseInt(dataSnapshot.getValue().toString());
+
+                                }
+                                @Override
+                                public void onCancelled(DatabaseError error) {
+                                    // Failed to read value
+                                    String TAG = "test";
+                                    Log.w(TAG, "Failed to read value.", error.toException());
+                                }
+                            });
+                        }
+                        holder.food_calorie.setText(String.valueOf(Sum[0]));
+                    }
+                    @Override
+                    public void onCancelled(DatabaseError error) {
+                        // Failed to read value
+                        String TAG = "test";
+                        Log.w(TAG, "Failed to read value.", error.toException());
+                    }
+                });
                 See.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -251,6 +303,11 @@ public class FoodList extends AppCompatActivity implements AdapterView.OnItemSel
                        case "Peanut": {
                            output = "Peanut";
                            code = 2;
+                           break;
+                       }
+                       case "Dairy": {
+                           output = "Dairy";
+                           code = 3;
                            break;
                        }
                        default:{

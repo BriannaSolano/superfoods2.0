@@ -1,13 +1,15 @@
 package com.example.myapplication;
 
 public class Food {
-    private String Description, Discount, Image, MenuId, Name, Price, Calories, Sugar, Fat, Salt;
+    private String Description, Discount, Image, MenuId, Name, Price, Calories, Sugar, Fat, Salt, ItemID;
     private Diet Diet;
     private Allergy Allergy;
     public Food() {
     }
 
-    public Food(String description, String discount, String image, String menuId, String name, String price, String calories, Diet diet, Allergy allergy, String sugar, String fat, String salt) {
+
+    public Food(String description, String discount, String image, String menuId, String name, String price, String calories, Diet diet, Allergy allergy,String itemID, String sugar, String fat, String salt) {
+
         Description = description;
         Discount = discount;
         Image = image;
@@ -15,6 +17,7 @@ public class Food {
         Name = name;
         Price = price;
         Calories = calories;
+        ItemID = itemID;
         Diet = diet;
         Allergy = allergy;
         Sugar = sugar;
@@ -105,5 +108,13 @@ public class Food {
 
     public void setSalt(String price) {
         Salt = price;
+
+    public String getItemID() {
+        return ItemID;
+    }
+
+    public void setItemID(String itemID) {
+        ItemID = itemID;
+
     }
 }

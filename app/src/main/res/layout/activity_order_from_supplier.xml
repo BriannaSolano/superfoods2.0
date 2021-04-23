@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".inventory.orderFromSupplierActivity"
+    android:orientation="vertical"
+    android:background="@drawable/backgroundgradientblue">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="99dp">
+
+        <TextView
+            android:id="@+id/textViewTotalAmt"
+            android:layout_width="84dp"
+            android:layout_height="34dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginLeft="4dp"
+            android:layout_marginTop="60dp"
+            android:gravity="center"
+            app:layout_constraintStart_toEndOf="@+id/textView16"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView16"
+            android:layout_width="84dp"
+            android:layout_height="34dp"
+            android:layout_marginStart="232dp"
+            android:layout_marginLeft="232dp"
+            android:layout_marginTop="60dp"
+            android:gravity="right|center_vertical"
+            android:text="Total:"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/buttonCreateOrderForm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginBottom="48dp"
+            android:text="Create Order Form"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/buttonFillOrder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="276dp"
+            android:layout_marginLeft="276dp"
+            android:layout_marginBottom="48dp"
+            android:text="Fill Order"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <RelativeLayout
+        android:id="@+id/viewitemsrellayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/backgroundgradientblue"
+        android:orientation="vertical"
+        android:padding="2dp">
+
+
+        <TextView
+            android:id="@+id/editTextItemQtyHeader"
+            android:layout_width="57dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="0dp"
+            android:layout_marginLeft="0dp"
+            android:layout_marginTop="14dp"
+            android:editable="true"
+            android:gravity="center"
+            android:hint="Qty"
+            android:inputType="number"
+            android:text="Qty" />
+
+        <TextView
+            android:id="@+id/textViewItemNameHeader"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="9dp"
+            android:layout_marginLeft="9dp"
+            android:layout_marginTop="14dp"
+            android:layout_toEndOf="@+id/editTextItemQtyHeader"
+            android:layout_toRightOf="@+id/editTextItemQtyHeader"
+            android:gravity="center"
+            android:hint="Name"
+            android:singleLine="false"
+            android:text="Name" />
+
+        <TextView
+            android:id="@+id/textViewItemCostHeader"
+            android:layout_width="63dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="9dp"
+            android:layout_marginLeft="9dp"
+            android:layout_marginTop="14dp"
+            android:layout_toEndOf="@+id/textViewItemNameHeader"
+            android:layout_toRightOf="@+id/textViewItemNameHeader"
+            android:gravity="center"
+            android:hint="$000.00"
+            android:singleLine="true"
+            android:text="Cost" />
+
+        <TextView
+            android:id="@+id/textViewTotalAmntHeader"
+            android:layout_width="63dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="9dp"
+            android:layout_marginLeft="9dp"
+            android:layout_marginTop="14dp"
+            android:layout_toEndOf="@+id/textViewItemCostHeader"
+            android:layout_toRightOf="@+id/textViewItemCostHeader"
+            android:gravity="center"
+            android:hint="$000.00"
+            android:singleLine="true"
+            android:text="Total" />
+
+
+    </RelativeLayout>
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewOrderForm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+</LinearLayout>

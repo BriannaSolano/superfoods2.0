@@ -1,12 +1,16 @@
 package com.example.myapplication;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -20,6 +24,8 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.MutableData;
+import com.google.firebase.database.Transaction;
 import com.google.firebase.database.ValueEventListener;
 import com.paypal.android.sdk.payments.PayPalConfiguration;
 import com.paypal.android.sdk.payments.PayPalPayment;
@@ -31,6 +37,10 @@ import com.paypal.android.sdk.payments.PaymentConfirmation;
 import org.json.JSONException;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Map;
+import java.util.function.Predicate;
 
 
 public class Pay extends AppCompatActivity {
@@ -146,9 +156,12 @@ public class Pay extends AppCompatActivity {
 
     private void copyFirebaseData(String phone) {
         DatabaseReference cartinformation = FirebaseDatabase.getInstance().getReference().child("Cart").child(phone);
+        DatabaseReference menu = FirebaseDatabase.getInstance().getReference().child("Food");
+        DatabaseReference inventory = FirebaseDatabase.getInstance().getReference().child("Inventory");
         final DatabaseReference ordermade = FirebaseDatabase.getInstance().getReference().child("Order");
 
         cartinformation.addListenerForSingleValueEvent(new ValueEventListener() {
+            @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot questionCode : dataSnapshot.getChildren()) {
@@ -161,6 +174,66 @@ public class Pay extends AppCompatActivity {
                     ordermade.child(phone).child(foodCode).child("FoodName").setValue(Foodname);
                     ordermade.child(phone).child(foodCode).child("Quantity").setValue(amount);
                     ordermade.child(phone).child(foodCode).child("TotalFoodPrice").setValue(price);
+
+                    //Subtract ingredients from inventory
+                    ArrayList<String> foodIngredients = new ArrayList<String>();
+                    ArrayList<String> eliminatedIngredients = new ArrayList<String>();
+
+                    menu.runTransaction(new Transaction.Handler() {
+                        @NonNull
+                        @Override
+                        public Transaction.Result doTransaction(@NonNull MutableData currentData) {
+                            String description;
+                            for(MutableData item : currentData.getChildren()) {
+                                Map<String, Object> map = (Map<String, Object>) item.getValue();
+                                String id = String.valueOf(item.getKey());
+                                Log.d("IDFOUND", id);
+                                if(id.equals(foodCode)) {
+                                    description = String.valueOf(map.get("Description")).toLowerCase();
+
+                                    String myingredients = ingredients.toLowerCase();
+                                    foodIngredients.addAll(Arrays.asList(description.split(" / ")));
+                                    eliminatedIngredients.addAll(Arrays.asList(myingredients.split(",")));
+                                    Log.d("DESCRIPTION", description);
+                                    Log.d("ELIMINATEDINGREDIENTS", eliminatedIngredients.toString());
+                                    foodIngredients.removeIf(s -> eliminatedIngredients.contains(s));
+                                    Log.d("FOODINGREDIENTS", foodIngredients.toString());
+                                    inventory.runTransaction(new Transaction.Handler() {
+                                        @NonNull
+                                        @Override
+                                        public Transaction.Result doTransaction(@NonNull MutableData currentData) {
+                                            for(MutableData item : currentData.getChildren()) {
+                                                Map<String, Object> map = (Map<String, Object>) item.getValue();
+                                                String name = String.valueOf(map.get("name")).toLowerCase();
+                                                Log.d("ORDER", name);
+                                                if(foodIngredients.contains(name)) {
+                                                    long count = (long) map.get("count");
+                                                    count -= Integer.parseInt(amount);
+                                                    map.replace("count", count);
+                                                    item.setValue(map);
+                                                }
+                                            }
+                                            return Transaction.success(currentData);
+                                        }
+
+                                        @Override
+                                        public void onComplete(@Nullable DatabaseError error, boolean committed, @Nullable DataSnapshot currentData) {
+                                            return;
+                                        }
+                                    });
+                                    break;
+                                }
+
+                            }
+                            return Transaction.abort();
+                        }
+
+                        @Override
+                        public void onComplete(@Nullable DatabaseError error, boolean committed, @Nullable DataSnapshot currentData) {
+
+                        }
+                    });
+
                 }
                 ordermade.child(phone).child("OrderStatus").setValue("Order Placed");
                 cartinformation.removeValue();
