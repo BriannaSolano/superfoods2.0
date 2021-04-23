@@ -230,7 +230,7 @@ public class orderFromSupplierActivity extends AppCompatActivity {
                                         public void onClick(DialogInterface dialog, int which) {
                                             String newQty = input.getText().toString();
                                             if(newQty.isEmpty()) newQty = "0";
-                                            ArrayList<String> row = data.get(position);
+                                            ArrayList<String> row = mData.get(position);
                                             row.set(0, newQty);
                                             float price = Float.parseFloat(row.get(2).substring(1));
                                             row.set(3, String.format("$%.2f", Integer.parseInt(newQty)*price));
@@ -248,7 +248,7 @@ public class orderFromSupplierActivity extends AppCompatActivity {
                                     break;
                                 case "Delete":
                                     Log.d("TAG","Delete clicked");
-                                    data.remove(position);
+                                    mData.remove(position);
                                     OrderFormAdapter.super.notifyDataSetChanged();
                                     updateFormTotal();
                                     break;
