@@ -23,7 +23,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class employee_sign_in extends AppCompatActivity {
+public class Employee_sign_in extends AppCompatActivity {
 
     private EditText Email;
     private EditText Password;
@@ -57,7 +57,7 @@ public class employee_sign_in extends AppCompatActivity {
 
         if (user != null) {
             finish();
-            startActivity(new Intent(employee_sign_in.this, employee_sign_in.class));
+            startActivity(new Intent(Employee_sign_in.this, Employee_sign_in.class));
         }
 
         Login.setOnClickListener((new View.OnClickListener() {
@@ -68,7 +68,7 @@ public class employee_sign_in extends AppCompatActivity {
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         userInfo user = snapshot.child(Phone.getText().toString()).getValue(userInfo.class);
                         if (user.getEmployee().equals("0")) {
-                            Toast.makeText(employee_sign_in.this, "This Page is only for Employees", Toast.LENGTH_LONG).show();
+                            Toast.makeText(Employee_sign_in.this, "This Page is only for Employees", Toast.LENGTH_LONG).show();
                         } else {
                             String employeeId = user.getEmployee();
                             validate(Email.getText().toString(), Password.getText().toString(), employeeId);
@@ -96,29 +96,34 @@ public class employee_sign_in extends AppCompatActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful() && (employeeId.equals("3"))) {
                     progressDialog.dismiss();
-                    Toast.makeText(employee_sign_in.this, "Login Successful", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(employee_sign_in.this, ManagerHomePage.class));
+                    Toast.makeText(Employee_sign_in.this, "Login Successful", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(Employee_sign_in.this, ManagerHomePage.class));
 
                 }
                 else if (task.isSuccessful() && (employeeId.equals("1"))) {
                     progressDialog.dismiss();
-                    Toast.makeText(employee_sign_in.this, "Login Successful", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(employee_sign_in.this, WaiterHomePage.class));
+                    Toast.makeText(Employee_sign_in.this, "Login Successful", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(Employee_sign_in.this, WaiterHomePage.class));
 
                 }
                 else if (task.isSuccessful() && (employeeId.equals("2"))) {
                     progressDialog.dismiss();
-                    Toast.makeText(employee_sign_in.this, "Login Successful", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(employee_sign_in.this, DroneHomePage.class));
+                    Toast.makeText(Employee_sign_in.this, "Login Successful", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(Employee_sign_in.this, DroneHomePage.class));
 
                 }
                 else if (task.isSuccessful() && (employeeId.equals("4"))) {
                     progressDialog.dismiss();
-                    Toast.makeText(employee_sign_in.this, "Login Successful", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(employee_sign_in.this, ChefHomePage.class));
+                    Toast.makeText(Employee_sign_in.this, "Login Successful", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(Employee_sign_in.this, ChefHomePage.class));
+                }
+                else if (task.isSuccessful() && (employeeId.equals("5"))) {
+                    progressDialog.dismiss();
+                    Toast.makeText(Employee_sign_in.this, "Login Successful", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(Employee_sign_in.this, MapsActivity.class));
                 }
                 else {
-                    Toast.makeText(employee_sign_in.this, "Login Failed", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Employee_sign_in.this, "Login Failed", Toast.LENGTH_SHORT).show();
                     counter--;
                     Info.setText("No of attempts remaining: " + counter);
                     progressDialog.dismiss();

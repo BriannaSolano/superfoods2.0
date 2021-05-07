@@ -1,5 +1,6 @@
 plugins {
     id 'com.android.application'
+    id 'com.google.secrets_gradle_plugin' version '0.4'
 }
 
 android {
@@ -77,6 +78,7 @@ dependencies {
 
     //Drone Delivery
     implementation 'com.google.android.libraries.maps:maps:3.1.0-beta'
+    implementation 'com.google.android.gms:play-services-maps:17.0.0'
     implementation 'androidx.recyclerview:recyclerview:1.0.0'
     implementation 'androidx.cardview:cardview:1.0.0'
     //inventory

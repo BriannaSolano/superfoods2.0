@@ -24,8 +24,10 @@
         <activity android:name=".ChefHomePage" />
         <activity android:name=".WaiterHomePage" />
         <activity android:name=".DroneHomePage" />
+        <activity android:name=".DroneOperatorPage" />
+        <activity android:name=".MapsActivity" />
         <activity android:name=".ManagerHomePage" />
-        <activity android:name=".employee_sign_in" />
+        <activity android:name=".Employee_sign_in" />
         <activity android:name=".inventory.dashboardActivity" />
         <activity android:name=".inventory.deleteItemActivity" />
         <activity android:name=".inventory.editItemActivity" />
@@ -77,6 +79,12 @@
         <meta-data
             android:name="com.parse.CLIENT_KEY"
             android:value="@string/back4app_client_key" />
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="${MAPS_API_KEY}" />
     </application>
 
 </manifest>
