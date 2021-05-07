@@ -94,10 +94,7 @@
     <string-array name="Allergy">
         <item>None</item>
         <item>Peanut</item>
-<<<<<<< Updated upstream
-=======
         <item>Dairy</item>
->>>>>>> Stashed changes
     </string-array>
     //Selected ingredients not to include
 
