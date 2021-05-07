@@ -17,13 +17,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
-import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.Charset;
 import java.text.DecimalFormat;
-import java.util.Arrays;
-import java.util.List;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -40,7 +36,6 @@ public class DroneHomePage extends AppCompatActivity {
     TextView eligibility;
 
     double[] userCoordinates = new double[2];
-    double[] weather = new double[2];
     double[] restaurantCoordinates = {40.522425, -74.4581546};
 
     @Override
@@ -68,40 +63,22 @@ public class DroneHomePage extends AppCompatActivity {
                         try {
                             String fullAddress = buildAddress(address.getText().toString(), city.getText().toString());
                             userCoordinates = getCoordinate(fullAddress);
-
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
                     }
                 });
                 thread.start();
-                Thread thread2 = new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        try {
-                            weather = weatherCheck();
-
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                    }
-                });
-                thread2.start();
                 try {
                     thread.join();
-                    thread2.join();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-
-
-
                 restLatLong.setText(restaurantCoordinates[0]+", "+restaurantCoordinates[1]);
                 deliverLatLong.setText(userCoordinates[0]+ ", "+userCoordinates[1]);
                 double dist = calculateDistance(restaurantCoordinates[0], userCoordinates[0], restaurantCoordinates[1], userCoordinates[1]);
                 DecimalFormat tresDecimals = new DecimalFormat("#.###");
                 milesAway.setText(String.valueOf(tresDecimals.format(dist))+ " miles");
-
                 boolean dispatch = canDispatch(dist,weather);
                 if(dispatch){
                     eligibility.setText("Your order is eligible for drone delivery.");
@@ -109,6 +86,7 @@ public class DroneHomePage extends AppCompatActivity {
                 else{
                     eligibility.setText("Your order is eligible for driven delivery.");
                 }
+                confirm.setText(String.valueOf(dispatch));
 
             }
 
@@ -223,7 +201,6 @@ public class DroneHomePage extends AppCompatActivity {
         return new double[]{wind, wC};
 
     }
-
     private static String buildAddress(String address, String city) {
         String out = address + ", " + city + ", NJ";
         out = out.replace(" ", "+");
@@ -253,7 +230,7 @@ public class DroneHomePage extends AppCompatActivity {
         return (c * r);
     }
 
-    private static boolean canDispatch(double distance, double[] weather) {
+    private static boolean canDispatch(double distance) {
 
         //Distance Checking
         if(distance > 8.143) {
@@ -266,12 +243,6 @@ public class DroneHomePage extends AppCompatActivity {
         if(precipitation ==1||wind >10) {
             return false;
         }
-//
-//    //Weight check
-//    Double weight = total weight of order
-//    if(weight>5.5 kg or 12.1254lb)
-//        return false;
-//am i in?
         return true;
     }
 

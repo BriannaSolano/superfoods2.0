@@ -1,12 +1,15 @@
 package com.example.myapplication;
 
 public class Food {
-    private String Description, Discount, Image, MenuId, Name, Price, Calories;
-
+    private String Description, Discount, Image, MenuId, Name, Price, Calories, Sugar, Fat, Salt, ItemID;
+    private Diet Diet;
+    private Allergy Allergy;
     public Food() {
     }
 
-    public Food(String description, String discount, String image, String menuId, String name, String price, String calories) {
+
+    public Food(String description, String discount, String image, String menuId, String name, String price, String calories, Diet diet, Allergy allergy,String itemID, String sugar, String fat, String salt) {
+
         Description = description;
         Discount = discount;
         Image = image;
@@ -14,6 +17,12 @@ public class Food {
         Name = name;
         Price = price;
         Calories = calories;
+        ItemID = itemID;
+        Diet = diet;
+        Allergy = allergy;
+        Sugar = sugar;
+        Fat = fat;
+        Salt = salt;
     }
 
     public String getCalories() {
@@ -23,6 +32,14 @@ public class Food {
     public void setCalories(String calories) {
         Calories = calories;
     }
+
+    public Diet getDiet() {return Diet;}
+
+    public void setDiet(Diet diet) {Diet = diet;}
+
+    public Allergy getAllergy() {return Allergy;}
+
+    public void setAllergy(Allergy allergy) {Allergy = allergy;}
 
     public String getDescription() {
         return Description;
@@ -70,5 +87,34 @@ public class Food {
 
     public void setPrice(String price) {
         Price = price;
+    }
+    public String getFat() {
+        return Fat;
+    }
+
+    public void setFat(String price) {
+        Fat = price;
+    }
+    public String getSugar() {
+        return Sugar;
+    }
+
+    public void setSugar(String price) {
+        Sugar = price;
+    }
+    public String getSalt() {
+        return Salt;
+    }
+
+    public void setSalt(String price) {
+        Salt = price;
+
+    public String getItemID() {
+        return ItemID;
+    }
+
+    public void setItemID(String itemID) {
+        ItemID = itemID;
+
     }
 }

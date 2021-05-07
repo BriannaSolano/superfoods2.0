@@ -5,14 +5,12 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
-import android.widget.Button;
 import android.widget.PopupMenu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -96,7 +94,7 @@ public class viewInventoryActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        Query query = FirebaseDatabase.getInstance().getReference("Inventory").limitToFirst(100);
+        Query query = FirebaseDatabase.getInstance().getReference("Inventory");
         FirebaseRecyclerOptions<Items> options = new FirebaseRecyclerOptions.Builder<Items>()
                 .setQuery(query, Items.class).build();
         firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<Items, InventoryItemViewHolder>(options) {
